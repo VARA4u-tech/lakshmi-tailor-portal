@@ -1,13 +1,24 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Layout } from "@/components/layout/Layout";
+import { HeroSection } from "@/components/home/HeroSection";
+import { ServicesPreview } from "@/components/home/ServicesPreview";
+import { ProductsPreview } from "@/components/home/ProductsPreview";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { CTASection } from "@/components/home/CTASection";
 
 const Index = () => {
+  const [language, setLanguage] = useState<"en" | "te">("en");
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <Layout language={language} onLanguageChange={setLanguage}>
+      <HeroSection language={language} />
+      <ServicesPreview language={language} />
+      <WhyChooseUs language={language} />
+      <ProductsPreview language={language} />
+      <TestimonialsSection language={language} />
+      <CTASection language={language} />
+    </Layout>
   );
 };
 
