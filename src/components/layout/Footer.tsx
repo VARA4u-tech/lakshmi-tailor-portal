@@ -12,7 +12,17 @@ const content = {
     services: "Services",
     servicesList: ["Designer Blouses", "Bridal Lehengas", "Gowns & Dresses", "Alterations"],
     quickLinks: "Quick Links",
-    linksList: ["About Us", "Gallery", "Contact"],
+    linksList: [
+      { name: "About Us", path: "/about" },
+      { name: "Gallery", path: "/gallery" },
+      { name: "Contact", path: "/contact" },
+    ],
+    legal: "Legal Info",
+    legalList: [
+      { name: "Privacy Policy", path: "/privacy-policy" },
+      { name: "Terms of Service", path: "/terms-of-service" },
+      { name: "Refund Policy", path: "/refund-policy" },
+    ],
     contact: "Contact Us",
     hours: "Mon - Sat: 10 AM - 8 PM",
     rights: "All rights reserved.",
@@ -22,7 +32,17 @@ const content = {
     services: "సేవలు",
     servicesList: ["డిజైనర్ బ్లౌజ్‌లు", "బ్రైడల్ లెహెంగాలు", "గౌన్లు & డ్రస్సులు", "అల్టరేషన్లు"],
     quickLinks: "త్వరిత లింక్‌లు",
-    linksList: ["మా గురించి", "గ్యాలరీ", "సంప్రదించండి"],
+    linksList: [
+      { name: "మా గురించి", path: "/about" },
+      { name: "గ్యాలరీ", path: "/gallery" },
+      { name: "సంప్రదించండి", path: "/contact" },
+    ],
+    legal: "చట్టపరమైన సమాచారం",
+    legalList: [
+      { name: "గోప్యతా విధానం", path: "/privacy-policy" },
+      { name: "సేవా నిబంధనలు", path: "/terms-of-service" },
+      { name: "వాపసు విధానం", path: "/refund-policy" },
+    ],
     contact: "మమ్మల్ని సంప్రదించండి",
     hours: "సోమ - శని: 10 AM - 8 PM",
     rights: "అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.",
@@ -35,7 +55,7 @@ export function Footer({ language }: FooterProps) {
   return (
     <footer className="bg-maroon-dark border-t border-border/30">
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-4">
@@ -103,10 +123,27 @@ export function Footer({ language }: FooterProps) {
               {t.linksList.map((link, index) => (
                 <li key={index}>
                   <Link
-                    to={`/${link.toLowerCase().replace(" ", "-")}`}
+                    to={link.path}
                     className="text-muted-foreground hover:text-accent transition-colors text-sm"
                   >
-                    {link}
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h4 className="font-heading text-cream text-lg font-semibold mb-4">{t.legal}</h4>
+            <ul className="space-y-3">
+              {t.legalList.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.path}
+                    className="text-muted-foreground hover:text-accent transition-colors text-sm"
+                  >
+                    {link.name}
                   </Link>
                 </li>
               ))}

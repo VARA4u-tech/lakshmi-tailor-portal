@@ -1,4 +1,8 @@
+<div align="center">
+
 # 🪡 Lakshmi Fashion & Designers
+
+<img width="256" alt="Lakshmi Fashion Logo" src="https://github.com/user-attachments/assets/81d67fb2-2913-4fee-a980-2b54b9399f58" />
 
 ### Premium Women's Tailoring & Fancy Store Portal
 
@@ -8,7 +12,7 @@
 [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
----
+## </div>
 
 ## ✨ Overview
 

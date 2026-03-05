@@ -17,6 +17,9 @@ const Services = lazy(() => import("./pages/Services"));
 const Products = lazy(() => import("./pages/Products"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const Contact = lazy(() => import("./pages/Contact"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 
@@ -91,6 +94,30 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition title="Admin Dashboard">
               <Admin />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/privacy-policy"
+          element={
+            <PageTransition title="Privacy Policy">
+              <PrivacyPolicy />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/terms-of-service"
+          element={
+            <PageTransition title="Terms of Service">
+              <TermsOfService />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/refund-policy"
+          element={
+            <PageTransition title="Refund Policy">
+              <RefundPolicy />
             </PageTransition>
           }
         />
