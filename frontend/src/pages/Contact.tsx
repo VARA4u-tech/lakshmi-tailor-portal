@@ -74,20 +74,43 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const response = await fetch(`${apiUrl}/api/enquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // Send via WhatsApp
-    const whatsappMessage = `New Enquiry from Website:\n\nName: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
-    window.open(`https://wa.me/919381487134?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
+      const result = await response.json();
 
-    toast({
-      title: language === "en" ? "Success!" : "విజయం!",
-      description: t.success,
-    });
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit enquiry.");
+      }
 
-    setFormData({ name: "", phone: "", message: "" });
-    setIsSubmitting(false);
+      // Also open WhatsApp for instant communication
+      const whatsappMessage = `Hi! I've just sent an enquiry via your website.\n\nName: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
+      window.open(
+        `https://wa.me/919381487134?text=${encodeURIComponent(whatsappMessage)}`,
+        "_blank",
+      );
+
+      toast({
+        title: language === "en" ? "Success!" : "విజయం!",
+        description: t.success,
+      });
+
+      setFormData({ name: "", phone: "", message: "" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Something went wrong.";
+      toast({
+        title: language === "en" ? "Error" : "లోపం",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleWhatsApp = () => {
