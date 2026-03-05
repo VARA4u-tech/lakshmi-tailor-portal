@@ -19,9 +19,9 @@ const pageContent = {
     },
     info: {
       title: "Visit Our Store",
-      address: "123 Fashion Street, Vijayawada, Andhra Pradesh - 520001",
-      phone: "+91 98765 43210",
-      email: "info@lakshmifashion.com",
+      address: "Old Check Post Center, Krishna Nagar, Yanamalakuduru Road, Near Commercial Tax Office, Vijayawada",
+      phone: "+91 93814 87134",
+      email: "9381487134pl@gmail.com",
       hours: "Monday - Saturday: 10 AM - 8 PM",
       closed: "Sunday: Closed",
     },
@@ -42,9 +42,9 @@ const pageContent = {
     },
     info: {
       title: "మా స్టోర్‌ను సందర్శించండి",
-      address: "123 ఫ్యాషన్ స్ట్రీట్, విజయవాడ, ఆంధ్ర ప్రదేశ్ - 520001",
-      phone: "+91 98765 43210",
-      email: "info@lakshmifashion.com",
+      address: "ఓల్డ్ చెక్ పోస్ట్ సెంటర్, కృష్ణ నగర్, యనమలకుదురు రోడ్, కమర్షియల్ టాక్స్ ఆఫీస్ దగ్గర, విజయవాడ",
+      phone: "+91 93814 87134",
+      email: "9381487134pl@gmail.com",
       hours: "సోమవారం - శనివారం: 10 AM - 8 PM",
       closed: "ఆదివారం: క్లోజ్డ్",
     },
@@ -54,8 +54,10 @@ const pageContent = {
   },
 };
 
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Contact = () => {
-  const [language, setLanguage] = useState<"en" | "te">("en");
+  const { language, setLanguage } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -68,36 +70,36 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     // Send via WhatsApp
     const whatsappMessage = `New Enquiry from Website:\n\nName: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
-    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
-    
+    window.open(`https://wa.me/919381487134?text=${encodeURIComponent(whatsappMessage)}`, "_blank");
+
     toast({
       title: language === "en" ? "Success!" : "విజయం!",
       description: t.success,
     });
-    
+
     setFormData({ name: "", phone: "", message: "" });
     setIsSubmitting(false);
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/919876543210?text=Hi! I'm interested in your tailoring services.", "_blank");
+    window.open("https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.", "_blank");
   };
 
   return (
     <Layout language={language} onLanguageChange={setLanguage}>
       {/* Hero Section */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16 relative">
+      <section className="pt-24 pb-10 md:pt-32 md:pb-12 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-maroon-dark/50 to-background" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-accent font-medium mb-2">{t.subtitle}</p>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-foreground mb-6">
+            <h1 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6">
               {t.title}
             </h1>
             <p className="text-muted-foreground text-lg">
@@ -179,7 +181,7 @@ const Contact = () => {
                     </div>
                     <div className="flex items-center gap-4">
                       <Phone className="w-5 h-5 text-accent flex-shrink-0" />
-                      <a href="tel:+919876543210" className="text-foreground hover:text-accent transition-colors">
+                      <a href="tel:+919381487134" className="text-foreground hover:text-accent transition-colors">
                         {t.info.phone}
                       </a>
                     </div>
@@ -215,7 +217,7 @@ const Contact = () => {
                   variant="gold"
                   size="lg"
                   className="w-full"
-                  onClick={() => window.location.href = "tel:+919876543210"}
+                  onClick={() => window.location.href = "tel:+919381487134"}
                 >
                   <Phone className="w-5 h-5" />
                   {t.call}
@@ -225,7 +227,7 @@ const Contact = () => {
               {/* Map */}
               <Card variant="default" className="overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.268544076838!2d80.62058531486945!3d16.50891988860921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f0a2a073957d%3A0x44c6f3bdb4fbf4e0!2sVijayawada%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1635840000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3825.725330251716!2d80.66871207514487!3d16.489439984252638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDI5JzIyLjAiTiA4MMKwNDAnMTYuNiJF!5e0!3m2!1sen!2sin!4v1765174658376!5m2!1sen!2sin"
                   width="100%"
                   height="250"
                   style={{ border: 0 }}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Instagram, Facebook, MessageCircle } from "lucide-react";
+import logo from "@/assets/logo.jpg";
 
 interface FooterProps {
   language: "en" | "te";
@@ -38,9 +39,11 @@ export function Footer({ language }: FooterProps) {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-gold flex items-center justify-center">
-                <span className="font-heading text-maroon-dark text-xl font-bold">L</span>
-              </div>
+              <img
+                src={logo}
+                alt="Lakshmi Fashion & Designers"
+                className="w-12 h-12 rounded-full object-cover"
+              />
               <div>
                 <h3 className="font-heading text-cream text-xl font-semibold">
                   Lakshmi Fashion
@@ -66,10 +69,16 @@ export function Footer({ language }: FooterProps) {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/919381487134"
                 className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center text-accent hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />
+              </a>
+              <a
+                href="tel:+919381487134"
+                className="w-10 h-10 rounded-full border border-accent/30 flex items-center justify-center text-accent hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-colors"
+              >
+                <Phone className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -121,26 +130,26 @@ export function Footer({ language }: FooterProps) {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">
-                  123 Fashion Street,<br />
-                  Vijayawada, AP - 520001
+                  Old Check Post Center, Krishna Nagar,<br />
+                  Yanamalakuduru Road, Vijayawada
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent flex-shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+919381487134"
                   className="text-muted-foreground hover:text-accent transition-colors text-sm"
                 >
-                  +91 98765 43210
+                  +91 93814 87134
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent flex-shrink-0" />
                 <a
-                  href="mailto:info@lakshmifashion.com"
+                  href="mailto:9381487134pl@gmail.com"
                   className="text-muted-foreground hover:text-accent transition-colors text-sm"
                 >
-                  info@lakshmifashion.com
+                  9381487134pl@gmail.com
                 </a>
               </li>
             </ul>

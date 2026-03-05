@@ -1,74 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
-import { X } from "lucide-react";
+import { X, Sparkles, Loader2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const galleryItems = [
-  {
-    id: 1,
-    title: { en: "Bridal Lehenga", te: "బ్రైడల్ లెహెంగా" },
-    type: "tailoring",
-    image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=800&fit=crop",
-  },
-  {
-    id: 2,
-    title: { en: "Designer Blouse", te: "డిజైనర్ బ్లౌజ్" },
-    type: "tailoring",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&h=600&fit=crop",
-  },
-  {
-    id: 3,
-    title: { en: "Party Gown", te: "పార్టీ గౌన్" },
-    type: "tailoring",
-    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&h=800&fit=crop",
-  },
-  {
-    id: 4,
-    title: { en: "Shop Interior", te: "షాప్ ఇంటీరియర్" },
-    type: "shop",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-  },
-  {
-    id: 5,
-    title: { en: "Silk Saree Work", te: "సిల్క్ చీర వర్క్" },
-    type: "tailoring",
-    image: "https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&h=600&fit=crop",
-  },
-  {
-    id: 6,
-    title: { en: "Wedding Collection", te: "వెడ్డింగ్ కలెక్షన్" },
-    type: "tailoring",
-    image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&h=800&fit=crop",
-  },
-  {
-    id: 7,
-    title: { en: "Jewelry Display", te: "జ్యువెలరీ డిస్ప్లే" },
-    type: "product",
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&h=600&fit=crop",
-  },
-  {
-    id: 8,
-    title: { en: "Embroidery Work", te: "ఎంబ్రాయిడరీ వర్క్" },
-    type: "tailoring",
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=600&fit=crop",
-  },
-  {
-    id: 9,
-    title: { en: "Fabric Collection", te: "ఫ్యాబ్రిక్ కలెక్షన్" },
-    type: "product",
-    image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=400&fit=crop",
-  },
-];
+interface GalleryItem {
+  id: string;
+  title_en: string;
+  title_te: string;
+  category: string;
+  image_url: string;
+}
 
 const filters = {
-  en: ["All", "Tailoring", "Products", "Shop"],
-  te: ["అన్నీ", "టైలరింగ్", "ప్రొడక్ట్స్", "షాప్"],
+  en: ["Tailoring"],
+  te: ["టైలరింగ్"],
 };
 
+// No complex mapping needed if we just show everything or default to one
 const filterMap: { [key: number]: string } = {
-  0: "all",
-  1: "tailoring",
-  2: "product",
-  3: "shop",
+  0: "tailoring",
 };
 
 const pageContent = {
@@ -76,34 +27,58 @@ const pageContent = {
     subtitle: "Our Work",
     title: "Gallery",
     description: "Browse through our collection of beautifully crafted outfits, accessories, and store ambiance.",
+    noItems: "No items found yet.",
   },
   te: {
     subtitle: "మా పని",
     title: "గ్యాలరీ",
     description: "మా అందంగా తయారు చేసిన దుస్తులు, యాక్సెసరీలు మరియు స్టోర్ వాతావరణ సేకరణను బ్రౌజ్ చేయండి.",
+    noItems: "ఇంకా ఏ ఐటమ్స్ కనుగొనబడలేదు.",
   },
 };
 
 const Gallery = () => {
-  const [language, setLanguage] = useState<"en" | "te">("en");
+  const { language, setLanguage } = useLanguage();
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const t = pageContent[language];
-  const filterList = filters[language];
 
-  const filteredItems = selectedFilter === 0
-    ? galleryItems
-    : galleryItems.filter(item => item.type === filterMap[selectedFilter]);
+  // Dynamic Data State
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const t = pageContent[language];
+
+  useEffect(() => {
+    fetchGalleryItems();
+  }, []);
+
+  const fetchGalleryItems = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from("gallery")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching gallery items:", error);
+    } else {
+      setGalleryItems(data || []);
+    }
+    setLoading(false);
+  };
+
+  // Show all items under the "Tailoring" heading
+  const filteredItems = galleryItems;
 
   return (
     <Layout language={language} onLanguageChange={setLanguage}>
       {/* Hero Section */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16 relative">
+      <section className="pt-24 pb-12 md:pt-40 md:pb-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-maroon-dark/50 to-background" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-accent font-medium mb-2">{t.subtitle}</p>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-foreground mb-6">
+            <h1 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6">
               {t.title}
             </h1>
             <p className="text-muted-foreground text-lg">
@@ -117,19 +92,17 @@ const Gallery = () => {
       <section className="py-6 border-b border-border/30">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            {filterList.map((filter, index) => (
-              <button
-                key={index}
-                onClick={() => setSelectedFilter(index)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedFilter === index
-                    ? "bg-accent text-accent-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+            <div className="flex items-center justify-center gap-6 py-4">
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-5 h-5 text-accent opacity-80" />
+                <span className="font-heading text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-accent via-yellow-200 to-accent font-medium tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                  {filters[language][0]}
+                </span>
+                <Sparkles className="w-5 h-5 text-accent opacity-80" />
+              </div>
+              <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
+            </div>
           </div>
         </div>
       </section>
@@ -137,28 +110,38 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="break-inside-avoid cursor-pointer group"
-                onClick={() => setSelectedImage(item.image)}
-              >
-                <div className="relative overflow-hidden rounded-xl">
-                  <img
-                    src={item.image}
-                    alt={item.title[language]}
-                    className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <p className="font-heading font-semibold text-foreground">
-                      {item.title[language]}
-                    </p>
+          {loading ? (
+            <div className="flex justify-center py-20">
+              <Loader2 className="w-8 h-8 animate-spin text-accent" />
+            </div>
+          ) : filteredItems.length === 0 ? (
+            <div className="text-center py-20 text-muted-foreground">
+              {t.noItems}
+            </div>
+          ) : (
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+              {filteredItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="break-inside-avoid cursor-pointer group"
+                  onClick={() => setSelectedImage(item.image_url)}
+                >
+                  <div className="relative overflow-hidden rounded-xl">
+                    <img
+                      src={item.image_url}
+                      alt={language === 'en' ? item.title_en : item.title_te}
+                      className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                      <p className="font-heading font-semibold text-foreground">
+                        {language === 'en' ? item.title_en : item.title_te}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

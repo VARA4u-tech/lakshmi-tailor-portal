@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
-import { Card, CardContent } from "@/components/ui/card";
+import { Crown, Sparkles, Scissors, Shirt, Flower2, Baby, Wrench, ArrowRight, Check, Clock, Phone, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Crown, Sparkles, Scissors, Shirt, Flower2, Baby, Wrench, MessageCircle } from "lucide-react";
 
 const services = {
   en: [
@@ -14,6 +14,8 @@ const services = {
       price: "₹15,000 - ₹1,00,000",
       duration: "4-6 weeks",
       features: ["Custom Design", "Premium Fabrics", "Heavy Embroidery", "Multiple Fittings"],
+      image: "/images/services/bridal-lehenga.png",
+      popular: true,
     },
     {
       icon: Sparkles,
@@ -22,14 +24,17 @@ const services = {
       price: "₹1,500 - ₹15,000",
       duration: "1-2 weeks",
       features: ["Custom Patterns", "Perfect Fit", "Embroidery Options", "Matching Work"],
+      image: "/images/services/designer-blouse.png",
+      popular: true,
     },
     {
       icon: Flower2,
-      title: "Party Wear Gowns",
+      title: "Gowns",
       description: "Elegant gowns for parties, receptions, and special occasions. Western and Indo-western styles available.",
       price: "₹8,000 - ₹50,000",
       duration: "2-3 weeks",
       features: ["Modern Designs", "Premium Materials", "Custom Styling", "Alteration Support"],
+      image: "/images/services/gowns.png",
     },
     {
       icon: Scissors,
@@ -38,6 +43,7 @@ const services = {
       price: "₹800 - ₹5,000",
       duration: "3-5 days",
       features: ["Quick Delivery", "Pattern Matching", "Back Design Options", "Piping Work"],
+      image: "/images/services/saree-blouse.png",
     },
     {
       icon: Shirt,
@@ -46,6 +52,7 @@ const services = {
       price: "₹500 - ₹3,000",
       duration: "2-4 days",
       features: ["Comfort Fit", "Various Styles", "Affordable", "Quick Turnaround"],
+      image: "/images/services/kurtis.png",
     },
     {
       icon: Baby,
@@ -54,6 +61,7 @@ const services = {
       price: "₹500 - ₹5,000",
       duration: "3-5 days",
       features: ["Child-Friendly", "Comfortable", "Cute Designs", "Safe Fabrics"],
+      image: "/images/services/kids-wear.png",
     },
     {
       icon: Wrench,
@@ -62,6 +70,7 @@ const services = {
       price: "₹200 - ₹1,000",
       duration: "1-2 days",
       features: ["Quick Service", "Expert Work", "All Garments", "Affordable"],
+      image: "/images/services/saree-blouse.png",
     },
   ],
   te: [
@@ -72,6 +81,8 @@ const services = {
       price: "₹15,000 - ₹1,00,000",
       duration: "4-6 వారాలు",
       features: ["కస్టమ్ డిజైన్", "ప్రీమియం ఫ్యాబ్రిక్స్", "హెవీ ఎంబ్రాయిడరీ", "మల్టిపుల్ ఫిట్టింగ్‌లు"],
+      image: "/images/services/bridal-lehenga.png",
+      popular: true,
     },
     {
       icon: Sparkles,
@@ -80,6 +91,8 @@ const services = {
       price: "₹1,500 - ₹15,000",
       duration: "1-2 వారాలు",
       features: ["కస్టమ్ ప్యాటర్న్‌లు", "పర్ఫెక్ట్ ఫిట్", "ఎంబ్రాయిడరీ ఆప్షన్‌లు", "మ్యాచింగ్ వర్క్"],
+      image: "/images/services/designer-blouse.png",
+      popular: true,
     },
     {
       icon: Flower2,
@@ -88,6 +101,7 @@ const services = {
       price: "₹8,000 - ₹50,000",
       duration: "2-3 వారాలు",
       features: ["మోడర్న్ డిజైన్‌లు", "ప్రీమియం మెటీరియల్స్", "కస్టమ్ స్టైలింగ్", "అల్టరేషన్ సపోర్ట్"],
+      image: "/images/services/gowns.png",
     },
     {
       icon: Scissors,
@@ -96,6 +110,7 @@ const services = {
       price: "₹800 - ₹5,000",
       duration: "3-5 రోజులు",
       features: ["త్వరిత డెలివరీ", "ప్యాటర్న్ మ్యాచింగ్", "బ్యాక్ డిజైన్ ఆప్షన్‌లు", "పైపింగ్ వర్క్"],
+      image: "/images/services/saree-blouse.png",
     },
     {
       icon: Shirt,
@@ -104,6 +119,7 @@ const services = {
       price: "₹500 - ₹3,000",
       duration: "2-4 రోజులు",
       features: ["కంఫర్ట్ ఫిట్", "వివిధ స్టైల్స్", "అందుబాటులో", "త్వరిత టర్నరౌండ్"],
+      image: "/images/services/kurtis.png",
     },
     {
       icon: Baby,
@@ -112,6 +128,7 @@ const services = {
       price: "₹500 - ₹5,000",
       duration: "3-5 రోజులు",
       features: ["చైల్డ్-ఫ్రెండ్లీ", "కంఫర్టబుల్", "క్యూట్ డిజైన్‌లు", "సేఫ్ ఫ్యాబ్రిక్స్"],
+      image: "/images/services/kids-wear.png",
     },
     {
       icon: Wrench,
@@ -120,6 +137,7 @@ const services = {
       price: "₹200 - ₹1,000",
       duration: "1-2 రోజులు",
       features: ["త్వరిత సేవ", "నిపుణుల పని", "అన్ని దుస్తులు", "అందుబాటులో"],
+      image: "/images/services/saree-blouse.png",
     },
   ],
 };
@@ -127,95 +145,234 @@ const services = {
 const pageContent = {
   en: {
     subtitle: "Our Expertise",
-    title: "Tailoring Services",
+    title: "Premium Tailoring Services",
     description: "From bridal elegance to everyday comfort, we craft every stitch with love and precision.",
-    price: "Price Range",
-    duration: "Delivery Time",
-    cta: "Book This Service",
+    cta: "Book Your Appointment",
+    whatsapp: "Chat on WhatsApp",
+    call: "Call Now",
+    getQuote: "Get Quote",
+    bookNow: "Book Now",
+    viewDetails: "View Details",
+    popularBadge: "Most Popular",
   },
   te: {
     subtitle: "మా నైపుణ్యం",
-    title: "టైలరింగ్ సేవలు",
+    title: "ప్రీమియం టైలరింగ్ సేవలు",
     description: "బ్రైడల్ ఎలిగెన్స్ నుండి రోజువారీ సౌకర్యం వరకు, మేము ప్రతి కుట్టును ప్రేమ మరియు ఖచ్చితత్వంతో తయారు చేస్తాము.",
-    price: "ధర పరిధి",
-    duration: "డెలివరీ సమయం",
-    cta: "ఈ సేవను బుక్ చేయండి",
+    cta: "మీ అపాయింట్‌మెంట్ బుక్ చేయండి",
+    whatsapp: "WhatsApp లో చాట్ చేయండి",
+    call: "ఇప్పుడు కాల్ చేయండి",
+    getQuote: "ధర అడగండి",
+    bookNow: "ఇప్పుడు బుక్ చేయండి",
+    viewDetails: "వివరాలు చూడండి",
+    popularBadge: "అత్యంత ప్రజాదరణ",
   },
 };
 
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Services = () => {
-  const [language, setLanguage] = useState<"en" | "te">("en");
+  const { language, setLanguage } = useLanguage();
   const t = pageContent[language];
   const servicesList = services[language];
+
+  const handleWhatsApp = () => {
+    window.open("https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.", "_blank");
+  };
+
+  const handleCall = () => {
+    window.location.href = "tel:+919381487134";
+  };
 
   return (
     <Layout language={language} onLanguageChange={setLanguage}>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative">
+      <section className="pt-24 pb-12 md:pt-32 md:pb-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-maroon-dark/50 to-background" />
+
+        {/* Abstract Background Shapes */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-accent font-medium mb-2">{t.subtitle}</p>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-foreground mb-6">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-accent font-medium mb-2"
+            >
+              {t.subtitle}
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6"
+            >
               {t.title}
-            </h1>
-            <p className="text-muted-foreground text-lg">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-muted-foreground text-lg mb-8"
+            >
               {t.description}
-            </p>
+            </motion.p>
+
+            {/* Quick Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Button variant="whatsapp" size="lg" onClick={handleWhatsApp} className="group">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                {t.whatsapp}
+              </Button>
+              <Button variant="gold" size="lg" onClick={handleCall} className="group">
+                <Phone className="w-5 h-5 mr-2" />
+                {t.call}
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-12 md:py-20 relative overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-6 relative">
             {servicesList.map((service, index) => (
-              <Card key={index} variant="gold" className="group hover-lift">
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                    <service.icon className="w-7 h-7 text-accent" />
-                  </div>
-                  <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {service.description}
-                  </p>
-                  
-                  {/* Features */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {service.features.map((feature, i) => (
-                      <span
-                        key={i}
-                        className="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  {/* Price & Duration */}
-                  <div className="border-t border-border/50 pt-4 mb-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">{t.price}:</span>
-                      <span className="text-accent font-semibold">{service.price}</span>
-                    </div>
-                    <div className="flex justify-between text-sm mt-1">
-                      <span className="text-muted-foreground">{t.duration}:</span>
-                      <span className="text-foreground">{service.duration}</span>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative flex"
+              >
+                {/* Popular Badge */}
+                {service.popular && (
+                  <div className="absolute top-4 left-4 z-20">
+                    <div className="bg-accent text-maroon-dark px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+                      <Crown className="w-3 h-3" />
+                      {t.popularBadge}
                     </div>
                   </div>
-                  
-                  <Link to="/booking">
-                    <Button variant="gold-outline" className="w-full">
-                      <MessageCircle className="w-4 h-4" />
-                      {t.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+                )}
+
+                {/* Service Card */}
+                <div className="relative w-full bg-card border border-border/50 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_30px_-5px_hsl(43_60%_52%_/_0.2)] hover:-translate-y-1 flex flex-col">
+                  {/* Image Header */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-90" />
+                  </div>
+
+                  {/* Floating Icon */}
+                  <div className="absolute top-[12.5rem] right-6 w-12 h-12 rounded-xl bg-card border border-border/50 flex items-center justify-center shadow-lg z-10 group-hover:border-accent/50 group-hover:shadow-[0_0_15px_-3px_hsl(43_60%_52%_/_0.4)] transition-all duration-300">
+                    <service.icon className="w-6 h-6 text-accent" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 pt-8 flex-1 flex flex-col">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="font-heading text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-muted-foreground text-sm mb-6 line-clamp-2">
+                      {service.description}
+                    </p>
+
+                    <div className="mt-auto">
+                      {/* Features */}
+                      <div className="space-y-2 mb-6">
+                        {service.features.slice(0, 3).map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2 text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent/50" />
+                            <span className="text-muted-foreground/80">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Duration & CTA */}
+                      <div className="flex items-center gap-4 pt-4 border-t border-border/50">
+                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground/60 mr-auto">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>{service.duration}</span>
+                        </div>
+
+                        <Link to="/contact" className="w-full flex-1">
+                          <Button
+                            variant="outline"
+                            className="w-full border-accent/30 hover:bg-accent/10 hover:border-accent text-accent group/btn h-10 text-sm font-medium"
+                          >
+                            {t.getQuote}
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent"></div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA Section */}
+      <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-maroon via-maroon-dark to-background">
+        <div className="absolute inset-0 bg-pattern-ornate opacity-20"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <h2 className="font-heading text-3xl md:text-5xl font-bold text-foreground mb-4">
+                {language === "en" ? "Ready to Get Started?" : "ప్రారంభించడానికి సిద్ధంగా ఉన్నారా?"}
+              </h2>
+              <p className="text-muted-foreground text-lg mb-8">
+                {language === "en"
+                  ? "Book your appointment today and experience the finest tailoring services in Vijayawada."
+                  : "ఈరోజే మీ అపాయింట్‌మెంట్ బుక్ చేసుకోండి మరియు విజయవాడలో అత్యుత్తమ టైలరింగ్ సేవలను అనుభవించండి."}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to="/contact">
+                  <Button variant="hero" size="xl" className="group">
+                    {t.cta}
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Button variant="outline" size="xl" onClick={handleWhatsApp} className="border-accent text-accent hover:bg-accent/10">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  {t.whatsapp}
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -6,11 +6,11 @@ const content = {
   en: {
     pageTitle: "About Us",
     subtitle: "Our Story",
-    title: "10+ Years of Fashion Excellence",
+    title: "20+ Years of Fashion Excellence",
     intro: "Lakshmi Fashion & Designers was founded with a simple vision: to make every woman feel beautiful and confident in her attire. What started as a small tailoring shop has grown into one of the most trusted names in women's fashion in Vijayawada.",
     storyTitle: "Our Journey",
     story: [
-      "Started in 2014 with a passion for perfect stitching and attention to detail.",
+      "Started in 2004 with a passion for perfect stitching and attention to detail.",
       "Expanded to include designer blouses and bridal wear in 2016.",
       "Opened our fancy store section with curated accessories in 2018.",
       "Served over 5000+ happy customers and counting.",
@@ -40,7 +40,7 @@ const content = {
       },
     ],
     milestones: [
-      { number: "10+", label: "Years Experience" },
+      { number: "20+", label: "Years Experience" },
       { number: "5000+", label: "Happy Customers" },
       { number: "1000+", label: "Bridal Outfits" },
       { number: "50+", label: "Design Patterns" },
@@ -49,11 +49,11 @@ const content = {
   te: {
     pageTitle: "మా గురించి",
     subtitle: "మా కథ",
-    title: "10+ సంవత్సరాల ఫ్యాషన్ శ్రేష్ఠత",
+    title: "20+ సంవత్సరాల ఫ్యాషన్ శ్రేష్ఠత",
     intro: "లక్ష్మి ఫ్యాషన్ & డిజైనర్స్ ఒక సాధారణ దృష్టితో స్థాపించబడింది: ప్రతి స్త్రీని తన దుస్తులలో అందంగా మరియు నమ్మకంగా అనుభవించేలా చేయడం. చిన్న టైలరింగ్ షాప్‌గా ప్రారంభమైనది విజయవాడలో మహిళల ఫ్యాషన్‌లో అత్యంత విశ్వసనీయ పేర్లలో ఒకటిగా మారింది.",
     storyTitle: "మా ప్రయాణం",
     story: [
-      "2014లో పర్ఫెక్ట్ స్టిచింగ్ మరియు వివరాలపై శ్రద్ధతో ప్రారంభించాము.",
+      "2004లో పర్ఫెక్ట్ స్టిచింగ్ మరియు వివరాలపై శ్రద్ధతో ప్రారంభించాము.",
       "2016లో డిజైనర్ బ్లౌజ్‌లు మరియు బ్రైడల్ వేర్‌ను చేర్చడానికి విస్తరించాము.",
       "2018లో క్యూరేటెడ్ యాక్సెసరీలతో మా ఫ్యాన్సీ స్టోర్ సెక్షన్‌ను ప్రారంభించాము.",
       "5000+ సంతోషకరమైన కస్టమర్లకు సేవ చేసాము.",
@@ -83,7 +83,7 @@ const content = {
       },
     ],
     milestones: [
-      { number: "10+", label: "సంవత్సరాల అనుభవం" },
+      { number: "20+", label: "సంవత్సరాల అనుభవం" },
       { number: "5000+", label: "సంతోషకరమైన కస్టమర్లు" },
       { number: "1000+", label: "బ్రైడల్ దుస్తులు" },
       { number: "50+", label: "డిజైన్ ప్యాటర్న్‌లు" },
@@ -91,19 +91,21 @@ const content = {
   },
 };
 
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const About = () => {
-  const [language, setLanguage] = useState<"en" | "te">("en");
+  const { language, setLanguage } = useLanguage();
   const t = content[language];
 
   return (
     <Layout language={language} onLanguageChange={setLanguage}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-32 relative">
+      <section className="pt-24 pb-12 md:pt-32 md:pb-20 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-maroon-dark/50 to-background" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-accent font-medium mb-2">{t.subtitle}</p>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-foreground mb-6">
+            <h1 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6">
               {t.title}
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
@@ -130,7 +132,7 @@ const About = () => {
       </section>
 
       {/* Story Timeline */}
-      <section className="py-20 md:py-32">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
             {t.storyTitle}
@@ -156,7 +158,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-20 md:py-32 bg-secondary/20">
+      <section className="py-12 md:py-20 bg-secondary/20">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
             {t.valuesTitle}

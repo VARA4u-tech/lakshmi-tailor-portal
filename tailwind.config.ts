@@ -17,6 +17,10 @@ export default {
         heading: ['"Playfair Display"', 'Georgia', 'serif'],
         body: ['Poppins', 'system-ui', 'sans-serif'],
       },
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

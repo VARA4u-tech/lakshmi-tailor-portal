@@ -8,7 +8,7 @@ const features = {
   en: [
     {
       icon: Award,
-      title: "10+ Years Experience",
+      title: "20+ Years Experience",
       description: "Decade of expertise in women's fashion tailoring",
     },
     {
@@ -40,7 +40,7 @@ const features = {
   te: [
     {
       icon: Award,
-      title: "10+ సంవత్సరాల అనుభవం",
+      title: "20+ సంవత్సరాల అనుభవం",
       description: "మహిళల ఫ్యాషన్ టైలరింగ్‌లో దశాబ్దం అనుభవం",
     },
     {
@@ -74,12 +74,12 @@ const features = {
 const sectionContent = {
   en: {
     subtitle: "Why Choose Us",
-    title: "Crafting Excellence Since 2014",
+    title: "Crafting Excellence Since 2004",
     description: "We combine traditional craftsmanship with modern designs to create timeless pieces.",
   },
   te: {
     subtitle: "మమ్మల్ని ఎందుకు ఎంచుకోవాలి",
-    title: "2014 నుండి శ్రేష్ఠతను రూపొందిస్తున్నాము",
+    title: "2004 నుండి శ్రేష్ఠతను రూపొందిస్తున్నాము",
     description: "సమకాలీన డిజైన్‌లతో సాంప్రదాయ క్రాఫ్ట్‌మాన్‌షిప్‌ను కలిపి శాశ్వత ముక్కలను సృష్టిస్తాము.",
   },
 };
@@ -89,7 +89,7 @@ export function WhyChooseUs({ language }: WhyChooseUsProps) {
   const featuresList = features[language];
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-to-b from-background to-secondary/20">
+    <section className="py-12 md:py-20 bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">

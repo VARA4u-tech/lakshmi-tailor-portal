@@ -13,25 +13,25 @@ const services = {
       icon: Crown,
       title: "Bridal Wear",
       description: "Exquisite bridal lehengas, sarees, and complete trousseau tailoring",
-      price: "Starting ₹15,000",
+
     },
     {
       icon: Sparkles,
       title: "Designer Blouses",
       description: "Custom designer blouses with intricate embroidery and perfect fit",
-      price: "Starting ₹1,500",
+
     },
     {
       icon: Scissors,
       title: "Lehengas & Gowns",
       description: "Party wear lehengas and elegant gowns for every occasion",
-      price: "Starting ₹8,000",
+
     },
     {
       icon: Shirt,
       title: "Daily Wear",
       description: "Comfortable and stylish everyday clothing alterations",
-      price: "Starting ₹500",
+
     },
   ],
   te: [
@@ -39,25 +39,25 @@ const services = {
       icon: Crown,
       title: "బ్రైడల్ వేర్",
       description: "అద్భుతమైన బ్రైడల్ లెహెంగాలు, చీరలు మరియు పూర్తి ట్రోసో టైలరింగ్",
-      price: "₹15,000 నుండి",
+
     },
     {
       icon: Sparkles,
       title: "డిజైనర్ బ్లౌజ్‌లు",
       description: "సంక్లిష్టమైన ఎంబ్రాయిడరీ మరియు పర్ఫెక్ట్ ఫిట్‌తో కస్టమ్ డిజైనర్ బ్లౌజ్‌లు",
-      price: "₹1,500 నుండి",
+
     },
     {
       icon: Scissors,
       title: "లెహెంగాలు & గౌన్లు",
       description: "ప్రతి సందర్భానికి పార్టీ వేర్ లెహెంగాలు మరియు ఎలిగెంట్ గౌన్లు",
-      price: "₹8,000 నుండి",
+
     },
     {
       icon: Shirt,
       title: "డైలీ వేర్",
       description: "సౌకర్యవంతమైన మరియు స్టైలిష్ రోజువారీ దుస్తుల మార్పులు",
-      price: "₹500 నుండి",
+
     },
   ],
 };
@@ -77,55 +77,64 @@ const sectionContent = {
   },
 };
 
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+
+// ... existing code ...
+
 export function ServicesPreview({ language }: ServicesPreviewProps) {
   const t = sectionContent[language];
   const servicesList = services[language];
 
   return (
-    <section className="py-20 md:py-32 relative">
+    <section className="py-12 md:py-20 relative">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-accent font-medium mb-2">{t.subtitle}</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
-            {t.title}
-          </h2>
-          <p className="text-muted-foreground">{t.description}</p>
-        </div>
+        <ScrollReveal direction="up" duration={0.6} width="100%">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-accent font-medium mb-2">{t.subtitle}</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+              {t.title}
+            </h2>
+            <p className="text-muted-foreground">{t.description}</p>
+          </div>
+        </ScrollReveal>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {servicesList.map((service, index) => (
-            <Card
-              key={index}
-              variant="gold"
-              className="group hover-lift cursor-pointer"
-            >
-              <CardContent className="p-6">
-                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                  <service.icon className="w-7 h-7 text-accent" />
-                </div>
-                <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                  {service.description}
-                </p>
-                <p className="text-accent font-semibold">{service.price}</p>
-              </CardContent>
-            </Card>
+            <ScrollReveal key={index} direction="up" delay={index * 0.1} duration={0.5} width="100%">
+              <Card
+                variant="gold"
+                className="group hover-lift cursor-pointer h-full"
+              >
+                <CardContent className="p-6">
+                  <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                    <service.icon className="w-7 h-7 text-accent" />
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                    {service.description}
+                  </p>
+
+                </CardContent>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <Link to="/services">
-            <Button variant="gold" size="lg">
-              {t.cta}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
-        </div>
+        <ScrollReveal direction="up" delay={0.4} duration={0.6}>
+          <div className="text-center mt-12">
+            <Link to="/services">
+              <Button variant="gold" size="lg">
+                {t.cta}
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

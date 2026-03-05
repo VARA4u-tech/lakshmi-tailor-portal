@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.jpg";
 
 const navLinks = [
   { name: "Home", nameTE: "హోమ్", href: "/" },
@@ -10,7 +11,6 @@ const navLinks = [
   { name: "Services", nameTE: "సేవలు", href: "/services" },
   { name: "Products", nameTE: "ఉత్పత్తులు", href: "/products" },
   { name: "Gallery", nameTE: "గ్యాలరీ", href: "/gallery" },
-  { name: "Book", nameTE: "బుక్", href: "/booking" },
   { name: "Contact", nameTE: "సంప్రదించండి", href: "/contact" },
 ];
 
@@ -33,25 +33,27 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
   }, []);
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/919876543210?text=Hi! I'm interested in your tailoring services.", "_blank");
+    window.open("https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.", "_blank");
   };
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-card border-b border-border/50"
+        isScrolled || isOpen
+          ? "bg-background/95 backdrop-blur-md shadow-card border-b border-border/50 transition-colors"
           : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="relative flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-gold flex items-center justify-center">
-              <span className="font-heading text-maroon-dark text-lg md:text-xl font-bold">L</span>
-            </div>
+            <img
+              src={logo}
+              alt="Lakshmi Fashion & Designers"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
+            />
             <div className="hidden sm:block">
               <h1 className="font-heading text-cream text-lg md:text-xl font-semibold leading-tight">
                 Lakshmi Fashion
@@ -59,6 +61,16 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
               <p className="text-accent text-xs">& Designers</p>
             </div>
           </Link>
+
+          {/* Mobile Language Toggle - Centered */}
+          <div className="absolute left-1/2 right-2/3 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:hidden">
+            <button
+              onClick={() => onLanguageChange(language === "en" ? "te" : "en")}
+              className="px-4 py-1.5 rounded-full border border-accent text-accent hover:bg-accent/10 transition-colors text-sm font-medium pt-2 pb-2"
+            >
+              {language === "en" ? "తెలుగు" : "English"}
+            </button>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
@@ -80,10 +92,10 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            {/* Language Toggle */}
+            {/* Language Toggle - Desktop */}
             <button
               onClick={() => onLanguageChange(language === "en" ? "te" : "en")}
-              className="text-xs font-medium px-3 py-1.5 rounded-full border border-accent/50 text-accent hover:bg-accent/10 transition-colors"
+              className="hidden lg:block text-xs font-medium px-3 py-1.5 rounded-full border border-accent/50 text-accent hover:bg-accent/10 transition-colors"
             >
               {language === "en" ? "తెలుగు" : "English"}
             </button>
@@ -102,7 +114,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-cream hover:text-accent transition-colors"
+              className="lg:hidden p-2 text-accent hover:text-accent/80 transition-colors"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -110,35 +122,38 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         </div>
 
         {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="lg:hidden py-4 border-t border-border/50 animate-fade-in">
-            <nav className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "px-4 py-3 rounded-lg text-base font-medium transition-colors",
-                    location.pathname === link.href
-                      ? "bg-accent/10 text-accent"
-                      : "text-cream/80 hover:bg-secondary hover:text-cream"
-                  )}
-                >
-                  {language === "en" ? link.name : link.nameTE}
-                </Link>
-              ))}
-              <Button
-                variant="whatsapp"
-                className="mt-4 mx-4"
-                onClick={handleWhatsApp}
+        <div
+          className={cn(
+            "lg:hidden absolute top-16 left-0 w-full bg-background border-b border-border/50 shadow-lg transition-all duration-300 ease-in-out overflow-hidden",
+            isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          )}
+        >
+          <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "px-4 py-3 rounded-lg text-base font-medium transition-colors",
+                  location.pathname === link.href
+                    ? "bg-accent/10 text-accent"
+                    : "text-foreground/80 hover:bg-secondary hover:text-foreground"
+                )}
               >
-                <MessageCircle className="w-5 h-5" />
-                {language === "en" ? "Chat on WhatsApp" : "WhatsApp లో చాట్ చేయండి"}
-              </Button>
-            </nav>
-          </div>
-        )}
+                {language === "en" ? link.name : link.nameTE}
+              </Link>
+            ))}
+            <Button
+              variant="whatsapp"
+              className="mt-4 mx-4"
+              onClick={handleWhatsApp}
+            >
+              <MessageCircle className="w-5 h-5" />
+              {language === "en" ? "Chat on WhatsApp" : "WhatsApp లో చాట్ చేయండి"}
+            </Button>
+          </nav>
+        </div>
       </div>
     </header>
   );

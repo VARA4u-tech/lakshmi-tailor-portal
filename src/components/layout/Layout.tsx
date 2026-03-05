@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FloatingCTA } from "../FloatingCTA";
+import { ScrollToTop } from "../ui/ScrollToTop";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export function Layout({ children, language, onLanguageChange }: LayoutProps) {
       <main className="flex-1">{children}</main>
       <Footer language={language} />
       <FloatingCTA language={language} />
+      <ScrollToTop />
     </div>
   );
 }
