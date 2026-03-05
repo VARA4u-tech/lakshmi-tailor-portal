@@ -25,12 +25,7 @@ const services = {
       title: "Bridal Lehengas",
       description:
         "Complete bridal lehenga sets with heavy embroidery, zardozi work, and custom designs. Perfect for your special day.",
-      features: [
-        "Custom Design",
-        "Premium Fabrics",
-        "Heavy Embroidery",
-        "Multiple Fittings",
-      ],
+      features: ["Custom Design", "Premium Fabrics", "Heavy Embroidery", "Multiple Fittings"],
       image: "/images/services/bridal-lehenga.png",
       popular: true,
     },
@@ -39,12 +34,7 @@ const services = {
       title: "Designer Blouses",
       description:
         "Exquisite designer blouses with intricate patterns, perfect fit, and modern or traditional designs.",
-      features: [
-        "Custom Patterns",
-        "Perfect Fit",
-        "Embroidery Options",
-        "Matching Work",
-      ],
+      features: ["Custom Patterns", "Perfect Fit", "Embroidery Options", "Matching Work"],
       image: "/images/services/designer-blouse.png",
       popular: true,
     },
@@ -53,12 +43,7 @@ const services = {
       title: "Gowns",
       description:
         "Elegant gowns for parties, receptions, and special occasions. Western and Indo-western styles available.",
-      features: [
-        "Modern Designs",
-        "Premium Materials",
-        "Custom Styling",
-        "Alteration Support",
-      ],
+      features: ["Modern Designs", "Premium Materials", "Custom Styling", "Alteration Support"],
       image: "/images/services/gowns.png",
     },
     {
@@ -66,12 +51,7 @@ const services = {
       title: "Saree Blouses",
       description:
         "Traditional and modern saree blouses. Plain, embroidered, or with heavy work to match your saree.",
-      features: [
-        "Quick Delivery",
-        "Pattern Matching",
-        "Back Design Options",
-        "Piping Work",
-      ],
+      features: ["Quick Delivery", "Pattern Matching", "Back Design Options", "Piping Work"],
       image: "/images/services/saree-blouse.png",
     },
     {
@@ -79,12 +59,7 @@ const services = {
       title: "Kurtis & Suits",
       description:
         "Comfortable daily wear kurtis and salwar suits. Simple stitching to designer patterns.",
-      features: [
-        "Comfort Fit",
-        "Various Styles",
-        "Affordable",
-        "Quick Turnaround",
-      ],
+      features: ["Comfort Fit", "Various Styles", "Affordable", "Quick Turnaround"],
       image: "/images/services/kurtis.png",
     },
     {
@@ -92,12 +67,7 @@ const services = {
       title: "Kids Wear",
       description:
         "Cute and comfortable outfits for kids. Lehengas, frocks, and traditional wear for little ones.",
-      features: [
-        "Child-Friendly",
-        "Comfortable",
-        "Cute Designs",
-        "Safe Fabrics",
-      ],
+      features: ["Child-Friendly", "Comfortable", "Cute Designs", "Safe Fabrics"],
       image: "/images/services/kids-wear.png",
     },
     {
@@ -106,7 +76,7 @@ const services = {
       description:
         "Expert alterations for all types of garments. Perfect fit adjustments and repairs.",
       features: ["Quick Service", "Expert Work", "All Garments", "Affordable"],
-      image: "/images/services/saree-blouse.png",
+      image: "/images/services/alterations.jpg",
     },
   ],
   te: [
@@ -169,12 +139,7 @@ const services = {
       title: "కుర్తీలు & సూట్లు",
       description:
         "సౌకర్యవంతమైన రోజువారీ వేర్ కుర్తీలు మరియు సల్వార్ సూట్లు. సింపుల్ స్టిచింగ్ నుండి డిజైనర్ ప్యాటర్న్‌ల వరకు.",
-      features: [
-        "కంఫర్ట్ ఫిట్",
-        "వివిధ స్టైల్స్",
-        "అందుబాటులో",
-        "త్వరిత టర్నరౌండ్",
-      ],
+      features: ["కంఫర్ట్ ఫిట్", "వివిధ స్టైల్స్", "అందుబాటులో", "త్వరిత టర్నరౌండ్"],
       image: "/images/services/kurtis.png",
     },
     {
@@ -182,12 +147,7 @@ const services = {
       title: "కిడ్స్ వేర్",
       description:
         "పిల్లల కోసం క్యూట్ మరియు కంఫర్టబుల్ దుస్తులు. చిన్నవారి కోసం లెహెంగాలు, ఫ్రాక్స్ మరియు సాంప్రదాయ దుస్తులు.",
-      features: [
-        "చైల్డ్-ఫ్రెండ్లీ",
-        "కంఫర్టబుల్",
-        "క్యూట్ డిజైన్‌లు",
-        "సేఫ్ ఫ్యాబ్రిక్స్",
-      ],
+      features: ["చైల్డ్-ఫ్రెండ్లీ", "కంఫర్టబుల్", "క్యూట్ డిజైన్‌లు", "సేఫ్ ఫ్యాబ్రిక్స్"],
       image: "/images/services/kids-wear.png",
     },
     {
@@ -388,10 +348,7 @@ const Services = () => {
                       {/* Features */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4">
                         {service.features.slice(0, 4).map((feature, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-2 text-sm group/feature"
-                          >
+                          <div key={idx} className="flex items-start gap-2 text-sm group/feature">
                             <div className="mt-0.5 w-4 h-4 rounded-full bg-accent/10 flex items-center justify-center group-hover/feature:bg-accent shadow-sm transition-colors duration-300">
                               <Check className="w-2.5 h-2.5 text-accent group-hover/feature:text-maroon-dark transition-colors duration-300" />
                             </div>

@@ -12,7 +12,7 @@ export function FloatingCTA({ language }: FloatingCTAProps) {
   const handleWhatsApp = () => {
     window.open(
       "https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.",
-      "_blank"
+      "_blank",
     );
   };
 
@@ -25,8 +25,9 @@ export function FloatingCTA({ language }: FloatingCTAProps) {
       {/* Main Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-destructive rotate-90" : "bg-accent hover:scale-110"
-          }`}
+        className={`w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 ${
+          isOpen ? "bg-destructive rotate-90" : "bg-accent hover:scale-110"
+        }`}
         aria-label="Contact options"
       >
         {isOpen ? (
@@ -38,8 +39,9 @@ export function FloatingCTA({ language }: FloatingCTAProps) {
 
       {/* Options */}
       <div
-        className={`flex flex-col gap-3 transition-all duration-300 ${isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-10 invisible"
-          }`}
+        className={`flex flex-col gap-3 transition-all duration-300 ${
+          isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 translate-y-10 invisible"
+        }`}
       >
         <button
           onClick={handleWhatsApp}

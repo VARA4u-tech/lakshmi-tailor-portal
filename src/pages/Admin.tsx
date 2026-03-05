@@ -3,13 +3,7 @@ import { supabase } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import {
   Loader2,
@@ -245,12 +239,8 @@ const Admin = () => {
               <div className="mx-auto w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4">
                 <Store className="w-8 h-8 text-accent" />
               </div>
-              <CardTitle className="font-heading text-3xl text-foreground">
-                Admin Portal
-              </CardTitle>
-              <CardDescription>
-                Enter your credentials to manage your store
-              </CardDescription>
+              <CardTitle className="font-heading text-3xl text-foreground">Admin Portal</CardTitle>
+              <CardDescription>Enter your credentials to manage your store</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleLogin} className="space-y-4">
@@ -281,9 +271,7 @@ const Admin = () => {
                   className="w-full bg-accent hover:bg-accent/90 mt-2"
                   disabled={authLoading}
                 >
-                  {authLoading ? (
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                  ) : null}
+                  {authLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                   Sign In
                 </Button>
               </form>
@@ -353,9 +341,7 @@ const Admin = () => {
               {activeView === "dashboard" && (
                 <div className="space-y-8">
                   <header>
-                    <h1 className="text-4xl font-heading font-bold mb-2">
-                      Welcome back, Admin
-                    </h1>
+                    <h1 className="text-4xl font-heading font-bold mb-2">Welcome back, Admin</h1>
                     <p className="text-muted-foreground">
                       Here is what's happening in your shop today.
                     </p>
@@ -410,20 +396,14 @@ const Admin = () => {
                     <Card className="border-accent/10 overflow-hidden">
                       <CardHeader className="flex flex-row items-center justify-between">
                         <CardTitle>Recent Products</CardTitle>
-                        <Button
-                          variant="link"
-                          onClick={() => setActiveView("products")}
-                        >
+                        <Button variant="link" onClick={() => setActiveView("products")}>
                           View All
                         </Button>
                       </CardHeader>
                       <CardContent className="p-0">
                         <div className="divide-y divide-border/50">
                           {products.slice(0, 4).map((p) => (
-                            <div
-                              key={p.id}
-                              className="p-4 flex items-center gap-4"
-                            >
+                            <div key={p.id} className="p-4 flex items-center gap-4">
                               <div className="w-10 h-10 rounded bg-secondary overflow-hidden flex-shrink-0">
                                 <img
                                   src={p.image_url}
@@ -432,16 +412,12 @@ const Admin = () => {
                                 />
                               </div>
                               <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium truncate">
-                                  {p.name_en}
-                                </p>
+                                <p className="text-sm font-medium truncate">{p.name_en}</p>
                                 <p className="text-xs text-muted-foreground truncate">
                                   {p.category} | {p.category_te}
                                 </p>
                               </div>
-                              <p className="text-sm font-semibold">
-                                ₹{p.price}
-                              </p>
+                              <p className="text-sm font-semibold">₹{p.price}</p>
                             </div>
                           ))}
                         </div>
@@ -454,16 +430,10 @@ const Admin = () => {
               {activeView === "products" && (
                 <div className="space-y-8">
                   <div className="flex items-center gap-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setActiveView("dashboard")}
-                    >
+                    <Button variant="ghost" size="icon" onClick={() => setActiveView("dashboard")}>
                       <ArrowLeft className="w-5 h-5" />
                     </Button>
-                    <h2 className="text-3xl font-heading font-bold">
-                      Products Management
-                    </h2>
+                    <h2 className="text-3xl font-heading font-bold">Products Management</h2>
                   </div>
 
                   <Card className="border-accent/20">
@@ -588,9 +558,7 @@ const Admin = () => {
                     {fetchLoading ? (
                       <div className="col-span-full py-20 flex flex-col items-center gap-4">
                         <Loader2 className="w-8 h-8 animate-spin text-accent" />
-                        <p className="text-muted-foreground">
-                          Loading products...
-                        </p>
+                        <p className="text-muted-foreground">Loading products...</p>
                       </div>
                     ) : (
                       products.map((product) => (
@@ -609,9 +577,7 @@ const Admin = () => {
                                 variant="destructive"
                                 size="icon"
                                 className="w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity"
-                                onClick={() =>
-                                  handleDelete("products", product.id)
-                                }
+                                onClick={() => handleDelete("products", product.id)}
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
@@ -630,9 +596,7 @@ const Admin = () => {
                               {product.name_en}
                             </h3>
                             <div className="flex items-center justify-between">
-                              <span className="text-lg font-bold">
-                                ₹{product.price}
-                              </span>
+                              <span className="text-lg font-bold">₹{product.price}</span>
                               <div
                                 className={`px-2 py-0.5 rounded text-[10px] font-bold ${product.in_stock ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive"}`}
                               >
@@ -650,16 +614,10 @@ const Admin = () => {
               {activeView === "gallery" && (
                 <div className="space-y-8">
                   <div className="flex items-center gap-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setActiveView("dashboard")}
-                    >
+                    <Button variant="ghost" size="icon" onClick={() => setActiveView("dashboard")}>
                       <ArrowLeft className="w-5 h-5" />
                     </Button>
-                    <h2 className="text-3xl font-heading font-bold">
-                      Gallery Management
-                    </h2>
+                    <h2 className="text-3xl font-heading font-bold">Gallery Management</h2>
                   </div>
 
                   <Card className="border-accent/20">
@@ -762,18 +720,12 @@ const Admin = () => {
                           key={item.id}
                           className="group relative rounded-xl overflow-hidden border border-accent/5 break-inside-avoid shadow-lg"
                         >
-                          <img
-                            src={item.image_url}
-                            alt=""
-                            className="w-full object-cover"
-                          />
+                          <img src={item.image_url} alt="" className="w-full object-cover" />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all flex flex-col justify-end p-4">
                             <h4 className="text-white font-heading font-semibold text-lg">
                               {item.title_en}
                             </h4>
-                            <p className="text-white/70 text-xs mb-3 capitalize">
-                              {item.category}
-                            </p>
+                            <p className="text-white/70 text-xs mb-3 capitalize">{item.category}</p>
                             <Button
                               variant="destructive"
                               size="sm"
@@ -794,16 +746,10 @@ const Admin = () => {
               {activeView === "enquiries" && (
                 <div className="space-y-8">
                   <div className="flex items-center gap-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setActiveView("dashboard")}
-                    >
+                    <Button variant="ghost" size="icon" onClick={() => setActiveView("dashboard")}>
                       <ArrowLeft className="w-5 h-5" />
                     </Button>
-                    <h2 className="text-3xl font-heading font-bold">
-                      Enquiries
-                    </h2>
+                    <h2 className="text-3xl font-heading font-bold">Enquiries</h2>
                   </div>
                   <Card className="border-accent/10 py-20 bg-secondary/10">
                     <CardContent className="flex flex-col items-center justify-center text-center space-y-4">
@@ -811,12 +757,9 @@ const Admin = () => {
                         <MessageSquare className="w-10 h-10 text-accent/40" />
                       </div>
                       <div>
-                        <CardTitle className="text-2xl mb-2">
-                          No Enquiries Yet
-                        </CardTitle>
+                        <CardTitle className="text-2xl mb-2">No Enquiries Yet</CardTitle>
                         <p className="text-muted-foreground">
-                          When customers contact you, their messages will appear
-                          here.
+                          When customers contact you, their messages will appear here.
                         </p>
                       </div>
                     </CardContent>
@@ -864,10 +807,7 @@ const DashboardCard = ({
   icon: React.ReactNode;
   onClick: () => void;
 }) => (
-  <Card
-    className="hover:border-accent/30 transition-all cursor-pointer group"
-    onClick={onClick}
-  >
+  <Card className="hover:border-accent/30 transition-all cursor-pointer group" onClick={onClick}>
     <CardContent className="p-6">
       <div className="flex items-center justify-between mb-4">
         <div className="p-2 bg-accent/5 rounded-lg group-hover:bg-accent/10 transition-colors">

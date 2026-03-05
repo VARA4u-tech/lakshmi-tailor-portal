@@ -75,12 +75,14 @@ const sectionContent = {
   en: {
     subtitle: "Why Choose Us",
     title: "Crafting Excellence Since 2004",
-    description: "We combine traditional craftsmanship with modern designs to create timeless pieces.",
+    description:
+      "We combine traditional craftsmanship with modern designs to create timeless pieces.",
   },
   te: {
     subtitle: "మమ్మల్ని ఎందుకు ఎంచుకోవాలి",
     title: "2004 నుండి శ్రేష్ఠతను రూపొందిస్తున్నాము",
-    description: "సమకాలీన డిజైన్‌లతో సాంప్రదాయ క్రాఫ్ట్‌మాన్‌షిప్‌ను కలిపి శాశ్వత ముక్కలను సృష్టిస్తాము.",
+    description:
+      "సమకాలీన డిజైన్‌లతో సాంప్రదాయ క్రాఫ్ట్‌మాన్‌షిప్‌ను కలిపి శాశ్వత ముక్కలను సృష్టిస్తాము.",
   },
 };
 
@@ -103,10 +105,7 @@ export function WhyChooseUs({ language }: WhyChooseUsProps) {
         {/* Features Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {featuresList.map((feature, index) => (
-            <div
-              key={index}
-              className="flex items-start gap-4 group"
-            >
+            <div key={index} className="flex items-start gap-4 group">
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
                 <feature.icon className="w-6 h-6 text-accent" />
               </div>
@@ -114,9 +113,7 @@ export function WhyChooseUs({ language }: WhyChooseUsProps) {
                 <h3 className="font-heading text-lg font-semibold text-foreground mb-1">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground text-sm">
-                  {feature.description}
-                </p>
+                <p className="text-muted-foreground text-sm">{feature.description}</p>
               </div>
             </div>
           ))}

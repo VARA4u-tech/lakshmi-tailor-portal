@@ -26,13 +26,15 @@ const pageContent = {
   en: {
     subtitle: "Our Work",
     title: "Gallery",
-    description: "Browse through our collection of beautifully crafted outfits, accessories, and store ambiance.",
+    description:
+      "Browse through our collection of beautifully crafted outfits, accessories, and store ambiance.",
     noItems: "No items found yet.",
   },
   te: {
     subtitle: "మా పని",
     title: "గ్యాలరీ",
-    description: "మా అందంగా తయారు చేసిన దుస్తులు, యాక్సెసరీలు మరియు స్టోర్ వాతావరణ సేకరణను బ్రౌజ్ చేయండి.",
+    description:
+      "మా అందంగా తయారు చేసిన దుస్తులు, యాక్సెసరీలు మరియు స్టోర్ వాతావరణ సేకరణను బ్రౌజ్ చేయండి.",
     noItems: "ఇంకా ఏ ఐటమ్స్ కనుగొనబడలేదు.",
   },
 };
@@ -81,9 +83,7 @@ const Gallery = () => {
             <h1 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6">
               {t.title}
             </h1>
-            <p className="text-muted-foreground text-lg">
-              {t.description}
-            </p>
+            <p className="text-muted-foreground text-lg">{t.description}</p>
           </div>
         </div>
       </section>
@@ -115,9 +115,7 @@ const Gallery = () => {
               <Loader2 className="w-8 h-8 animate-spin text-accent" />
             </div>
           ) : filteredItems.length === 0 ? (
-            <div className="text-center py-20 text-muted-foreground">
-              {t.noItems}
-            </div>
+            <div className="text-center py-20 text-muted-foreground">{t.noItems}</div>
           ) : (
             <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
               {filteredItems.map((item) => (
@@ -129,12 +127,12 @@ const Gallery = () => {
                   <div className="relative overflow-hidden rounded-xl">
                     <img
                       src={item.image_url}
-                      alt={language === 'en' ? item.title_en : item.title_te}
+                      alt={language === "en" ? item.title_en : item.title_te}
                       className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                       <p className="font-heading font-semibold text-foreground">
-                        {language === 'en' ? item.title_en : item.title_te}
+                        {language === "en" ? item.title_en : item.title_te}
                       </p>
                     </div>
                   </div>

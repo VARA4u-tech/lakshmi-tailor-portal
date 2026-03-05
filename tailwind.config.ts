@@ -1,8 +1,13 @@
 import type { Config } from "tailwindcss";
-
+import tailwindcssAnimate from "tailwindcss-animate";
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,12 +19,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Playfair Display"', 'Georgia', 'serif'],
-        body: ['Poppins', 'system-ui', 'sans-serif'],
+        heading: ['"Playfair Display"', "Georgia", "serif"],
+        body: ["Poppins", "system-ui", "sans-serif"],
       },
       transitionProperty: {
-        'height': 'height',
-        'spacing': 'margin, padding',
+        height: "height",
+        spacing: "margin, padding",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -124,16 +129,18 @@ export default {
       backgroundImage: {
         "gradient-gold": "linear-gradient(135deg, hsl(43 60% 52%), hsl(43 70% 65%))",
         "gradient-maroon": "linear-gradient(180deg, hsl(345 65% 22%), hsl(345 70% 12%))",
-        "gradient-hero": "linear-gradient(135deg, hsl(345 70% 8%) 0%, hsl(345 65% 15%) 50%, hsl(345 70% 10%) 100%)",
-        "gradient-radial-gold": "radial-gradient(circle, hsl(43 60% 52% / 0.2) 0%, transparent 70%)",
+        "gradient-hero":
+          "linear-gradient(135deg, hsl(345 70% 8%) 0%, hsl(345 65% 15%) 50%, hsl(345 70% 10%) 100%)",
+        "gradient-radial-gold":
+          "radial-gradient(circle, hsl(43 60% 52% / 0.2) 0%, transparent 70%)",
       },
       boxShadow: {
-        "gold": "0 4px 20px -4px hsl(43 60% 52% / 0.3)",
+        gold: "0 4px 20px -4px hsl(43 60% 52% / 0.3)",
         "gold-lg": "0 8px 30px -6px hsl(43 60% 52% / 0.4)",
-        "card": "0 8px 32px -8px hsl(0 0% 0% / 0.4)",
-        "elevated": "0 20px 40px -12px hsl(0 0% 0% / 0.5)",
+        card: "0 8px 32px -8px hsl(0 0% 0% / 0.4)",
+        elevated: "0 20px 40px -12px hsl(0 0% 0% / 0.5)",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

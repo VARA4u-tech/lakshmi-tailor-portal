@@ -19,7 +19,8 @@ const pageContent = {
     },
     info: {
       title: "Visit Our Store",
-      address: "Old Check Post Center, Krishna Nagar, Yanamalakuduru Road, Near Commercial Tax Office, Vijayawada",
+      address:
+        "Old Check Post Center, Krishna Nagar, Yanamalakuduru Road, Near Commercial Tax Office, Vijayawada",
       phone: "+91 93814 87134",
       email: "9381487134pl@gmail.com",
       hours: "Monday - Saturday: 10 AM - 8 PM",
@@ -32,7 +33,8 @@ const pageContent = {
   te: {
     subtitle: "సంప్రదించండి",
     title: "మమ్మల్ని సంప్రదించండి",
-    description: "ఏదైనా ప్రశ్న ఉందా లేదా అపాయింట్‌మెంట్ బుక్ చేయాలనుకుంటున్నారా? మీ నుండి వినడానికి ఇష్టపడతాము.",
+    description:
+      "ఏదైనా ప్రశ్న ఉందా లేదా అపాయింట్‌మెంట్ బుక్ చేయాలనుకుంటున్నారా? మీ నుండి వినడానికి ఇష్టపడతాము.",
     form: {
       name: "మీ పేరు",
       phone: "ఫోన్ నంబర్",
@@ -42,7 +44,8 @@ const pageContent = {
     },
     info: {
       title: "మా స్టోర్‌ను సందర్శించండి",
-      address: "ఓల్డ్ చెక్ పోస్ట్ సెంటర్, కృష్ణ నగర్, యనమలకుదురు రోడ్, కమర్షియల్ టాక్స్ ఆఫీస్ దగ్గర, విజయవాడ",
+      address:
+        "ఓల్డ్ చెక్ పోస్ట్ సెంటర్, కృష్ణ నగర్, యనమలకుదురు రోడ్, కమర్షియల్ టాక్స్ ఆఫీస్ దగ్గర, విజయవాడ",
       phone: "+91 93814 87134",
       email: "9381487134pl@gmail.com",
       hours: "సోమవారం - శనివారం: 10 AM - 8 PM",
@@ -72,7 +75,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Send via WhatsApp
     const whatsappMessage = `New Enquiry from Website:\n\nName: ${formData.name}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
@@ -88,7 +91,10 @@ const Contact = () => {
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.", "_blank");
+    window.open(
+      "https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.",
+      "_blank",
+    );
   };
 
   return (
@@ -102,9 +108,7 @@ const Contact = () => {
             <h1 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6">
               {t.title}
             </h1>
-            <p className="text-muted-foreground text-lg">
-              {t.description}
-            </p>
+            <p className="text-muted-foreground text-lg">{t.description}</p>
           </div>
         </div>
       </section>
@@ -181,13 +185,19 @@ const Contact = () => {
                     </div>
                     <div className="flex items-center gap-4">
                       <Phone className="w-5 h-5 text-accent flex-shrink-0" />
-                      <a href="tel:+919381487134" className="text-foreground hover:text-accent transition-colors">
+                      <a
+                        href="tel:+919381487134"
+                        className="text-foreground hover:text-accent transition-colors"
+                      >
                         {t.info.phone}
                       </a>
                     </div>
                     <div className="flex items-center gap-4">
                       <Mail className="w-5 h-5 text-accent flex-shrink-0" />
-                      <a href="mailto:info@lakshmifashion.com" className="text-foreground hover:text-accent transition-colors">
+                      <a
+                        href="mailto:info@lakshmifashion.com"
+                        className="text-foreground hover:text-accent transition-colors"
+                      >
                         {t.info.email}
                       </a>
                     </div>
@@ -204,12 +214,7 @@ const Contact = () => {
 
               {/* Quick Actions */}
               <div className="grid grid-cols-2 gap-4">
-                <Button
-                  variant="whatsapp"
-                  size="lg"
-                  className="w-full"
-                  onClick={handleWhatsApp}
-                >
+                <Button variant="whatsapp" size="lg" className="w-full" onClick={handleWhatsApp}>
                   <MessageCircle className="w-5 h-5" />
                   {t.whatsapp}
                 </Button>
@@ -217,7 +222,7 @@ const Contact = () => {
                   variant="gold"
                   size="lg"
                   className="w-full"
-                  onClick={() => window.location.href = "tel:+919381487134"}
+                  onClick={() => (window.location.href = "tel:+919381487134")}
                 >
                   <Phone className="w-5 h-5" />
                   {t.call}

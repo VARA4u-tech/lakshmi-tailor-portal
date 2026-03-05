@@ -18,7 +18,8 @@ const content = {
     title: "Lakshmi Fashion",
     subtitle: "& Designers",
     tagline: "Tailoring is not just about making clothes, it's about making people.",
-    description: "Premium women's tailoring and fancy store. Specializing in bridal wear, designer blouses, lehengas, and exclusive fashion accessories.",
+    description:
+      "Premium women's tailoring and fancy store. Specializing in bridal wear, designer blouses, lehengas, and exclusive fashion accessories.",
     cta: "Book Appointment",
     secondary: "View Our Work",
   },
@@ -27,7 +28,8 @@ const content = {
     title: "లక్ష్మి ఫ్యాషన్",
     subtitle: "& డిజైనర్స్",
     tagline: "టైలరింగ్ అనేది బట్టలు తయారు చేయడం మాత్రమే కాదు, మనుషులను తయారు చేయడం.",
-    description: "ప్రీమియం మహిళల టైలరింగ్ మరియు ఫ్యాన్సీ స్టోర్. బ్రైడల్ వేర్, డిజైనర్ బ్లౌజ్‌లు, లెహెంగాలు మరియు ప్రత్యేక ఫ్యాషన్ యాక్సెసరీలలో ప్రత్యేకత.",
+    description:
+      "ప్రీమియం మహిళల టైలరింగ్ మరియు ఫ్యాన్సీ స్టోర్. బ్రైడల్ వేర్, డిజైనర్ బ్లౌజ్‌లు, లెహెంగాలు మరియు ప్రత్యేక ఫ్యాషన్ యాక్సెసరీలలో ప్రత్యేకత.",
     cta: "అపాయింట్‌మెంట్ బుక్ చేయండి",
     secondary: "మా పనిని చూడండి",
   },
@@ -59,7 +61,6 @@ export function HeroSection({ language }: HeroSectionProps) {
       <div className="container mx-auto px-4 relative z-10">
         <ParallaxWrapper offset={-30}>
           <div className="max-w-4xl mx-auto text-center">
-
             {/* Badge */}
             <ScrollReveal direction="down" duration={0.8} width="100%">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 text-accent text-sm mb-4">
@@ -99,13 +100,21 @@ export function HeroSection({ language }: HeroSectionProps) {
             <ScrollReveal direction="up" delay={0.8} duration={0.8} width="100%">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link to="/contact" className="w-full sm:w-auto">
-                  <Button variant="hero" size="lg" className="group w-full sm:w-auto md:h-14 md:text-lg">
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    className="group w-full sm:w-auto md:h-14 md:text-lg"
+                  >
                     {t.cta}
                     <Scissors className="ml-2 w-5 h-5 group-hover:rotate-45 transition-transform" />
                   </Button>
                 </Link>
                 <Link to="/gallery" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="border-accent text-accent hover:bg-accent/10 group w-full sm:w-auto md:h-14 md:text-lg">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-accent text-accent hover:bg-accent/10 group w-full sm:w-auto md:h-14 md:text-lg"
+                  >
                     {t.secondary}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Button>
@@ -120,16 +129,28 @@ export function HeroSection({ language }: HeroSectionProps) {
           <ScrollReveal direction="up" delay={1.0} duration={0.8} width="100%">
             <div className="grid grid-cols-3 gap-2 md:gap-6 max-w-2xl mx-auto border-t border-white/10 pt-8">
               <div className="text-center group cursor-default">
-                <p className="font-heading text-2xl md:text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">20+</p>
-                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-cream transition-colors break-words">{language === "en" ? "Years Exp." : "అనుభవం"}</p>
+                <p className="font-heading text-2xl md:text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">
+                  20+
+                </p>
+                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-cream transition-colors break-words">
+                  {language === "en" ? "Years Exp." : "అనుభవం"}
+                </p>
               </div>
               <div className="text-center group cursor-default">
-                <p className="font-heading text-2xl md:text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">5k+</p>
-                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-cream transition-colors break-words">{language === "en" ? "Customers" : "కస్టమర్లు"}</p>
+                <p className="font-heading text-2xl md:text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">
+                  5k+
+                </p>
+                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-cream transition-colors break-words">
+                  {language === "en" ? "Customers" : "కస్టమర్లు"}
+                </p>
               </div>
               <div className="text-center group cursor-default">
-                <p className="font-heading text-2xl md:text-4xl font-bold text-accent group-hover:scale-100 transition-transform duration-300">100+</p>
-                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-cream transition-colors break-words">{language === "en" ? "Dresses" : "డ్రస్సులు"}</p>
+                <p className="font-heading text-2xl md:text-4xl font-bold text-accent group-hover:scale-100 transition-transform duration-300">
+                  100+
+                </p>
+                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-cream transition-colors break-words">
+                  {language === "en" ? "Dresses" : "డ్రస్సులు"}
+                </p>
               </div>
             </div>
           </ScrollReveal>

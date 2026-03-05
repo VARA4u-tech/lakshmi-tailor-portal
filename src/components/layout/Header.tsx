@@ -33,7 +33,10 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
   }, []);
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.", "_blank");
+    window.open(
+      "https://wa.me/919381487134?text=Hi! I'm interested in your tailoring services.",
+      "_blank",
+    );
   };
 
   return (
@@ -42,7 +45,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled || isOpen
           ? "bg-background/95 backdrop-blur-md shadow-card border-b border-border/50 transition-colors"
-          : "bg-transparent"
+          : "bg-transparent",
       )}
     >
       <div className="container mx-auto px-4">
@@ -80,9 +83,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                 to={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors duration-200 hover:text-accent",
-                  location.pathname === link.href
-                    ? "text-accent"
-                    : "text-cream/80"
+                  location.pathname === link.href ? "text-accent" : "text-cream/80",
                 )}
               >
                 {language === "en" ? link.name : link.nameTE}
@@ -125,7 +126,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
         <div
           className={cn(
             "lg:hidden absolute top-16 left-0 w-full bg-background border-b border-border/50 shadow-lg transition-all duration-300 ease-in-out overflow-hidden",
-            isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+            isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
           )}
         >
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
@@ -138,17 +139,13 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
                   "px-4 py-3 rounded-lg text-base font-medium transition-colors",
                   location.pathname === link.href
                     ? "bg-accent/10 text-accent"
-                    : "text-foreground/80 hover:bg-secondary hover:text-foreground"
+                    : "text-foreground/80 hover:bg-secondary hover:text-foreground",
                 )}
               >
                 {language === "en" ? link.name : link.nameTE}
               </Link>
             ))}
-            <Button
-              variant="whatsapp"
-              className="mt-4 mx-4"
-              onClick={handleWhatsApp}
-            >
+            <Button variant="whatsapp" className="mt-4 mx-4" onClick={handleWhatsApp}>
               <MessageCircle className="w-5 h-5" />
               {language === "en" ? "Chat on WhatsApp" : "WhatsApp లో చాట్ చేయండి"}
             </Button>

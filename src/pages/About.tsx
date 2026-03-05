@@ -7,7 +7,8 @@ const content = {
     pageTitle: "About Us",
     subtitle: "Our Story",
     title: "20+ Years of Fashion Excellence",
-    intro: "Lakshmi Fashion & Designers was founded with a simple vision: to make every woman feel beautiful and confident in her attire. What started as a small tailoring shop has grown into one of the most trusted names in women's fashion in Vijayawada.",
+    intro:
+      "Lakshmi Fashion & Designers was founded with a simple vision: to make every woman feel beautiful and confident in her attire. What started as a small tailoring shop has grown into one of the most trusted names in women's fashion in Vijayawada.",
     storyTitle: "Our Journey",
     story: [
       "Started in 2004 with a passion for perfect stitching and attention to detail.",
@@ -21,22 +22,26 @@ const content = {
       {
         icon: Heart,
         title: "Customer First",
-        description: "Your satisfaction is our top priority. We listen, understand, and deliver exactly what you envision.",
+        description:
+          "Your satisfaction is our top priority. We listen, understand, and deliver exactly what you envision.",
       },
       {
         icon: Award,
         title: "Quality Craftsmanship",
-        description: "Every stitch is made with precision. We use only premium materials and time-tested techniques.",
+        description:
+          "Every stitch is made with precision. We use only premium materials and time-tested techniques.",
       },
       {
         icon: Clock,
         title: "Timely Delivery",
-        description: "We understand the importance of your special occasions. Your outfit will be ready when promised.",
+        description:
+          "We understand the importance of your special occasions. Your outfit will be ready when promised.",
       },
       {
         icon: Users,
         title: "Women's Comfort",
-        description: "Our space is designed for women by women. Feel comfortable during all fittings and consultations.",
+        description:
+          "Our space is designed for women by women. Feel comfortable during all fittings and consultations.",
       },
     ],
     milestones: [
@@ -50,7 +55,8 @@ const content = {
     pageTitle: "మా గురించి",
     subtitle: "మా కథ",
     title: "20+ సంవత్సరాల ఫ్యాషన్ శ్రేష్ఠత",
-    intro: "లక్ష్మి ఫ్యాషన్ & డిజైనర్స్ ఒక సాధారణ దృష్టితో స్థాపించబడింది: ప్రతి స్త్రీని తన దుస్తులలో అందంగా మరియు నమ్మకంగా అనుభవించేలా చేయడం. చిన్న టైలరింగ్ షాప్‌గా ప్రారంభమైనది విజయవాడలో మహిళల ఫ్యాషన్‌లో అత్యంత విశ్వసనీయ పేర్లలో ఒకటిగా మారింది.",
+    intro:
+      "లక్ష్మి ఫ్యాషన్ & డిజైనర్స్ ఒక సాధారణ దృష్టితో స్థాపించబడింది: ప్రతి స్త్రీని తన దుస్తులలో అందంగా మరియు నమ్మకంగా అనుభవించేలా చేయడం. చిన్న టైలరింగ్ షాప్‌గా ప్రారంభమైనది విజయవాడలో మహిళల ఫ్యాషన్‌లో అత్యంత విశ్వసనీయ పేర్లలో ఒకటిగా మారింది.",
     storyTitle: "మా ప్రయాణం",
     story: [
       "2004లో పర్ఫెక్ట్ స్టిచింగ్ మరియు వివరాలపై శ్రద్ధతో ప్రారంభించాము.",
@@ -64,22 +70,26 @@ const content = {
       {
         icon: Heart,
         title: "కస్టమర్ మొదట",
-        description: "మీ సంతృప్తి మా అగ్ర ప్రాధాన్యత. మేము వింటాము, అర్థం చేసుకుంటాము మరియు మీరు ఊహించినది ఖచ్చితంగా అందిస్తాము.",
+        description:
+          "మీ సంతృప్తి మా అగ్ర ప్రాధాన్యత. మేము వింటాము, అర్థం చేసుకుంటాము మరియు మీరు ఊహించినది ఖచ్చితంగా అందిస్తాము.",
       },
       {
         icon: Award,
         title: "నాణ్యమైన క్రాఫ్ట్‌మాన్‌షిప్",
-        description: "ప్రతి కుట్టు ఖచ్చితత్వంతో చేయబడుతుంది. మేము ప్రీమియం మెటీరియల్స్ మరియు సమయ-పరీక్షించిన టెక్నిక్‌లను మాత్రమే ఉపయోగిస్తాము.",
+        description:
+          "ప్రతి కుట్టు ఖచ్చితత్వంతో చేయబడుతుంది. మేము ప్రీమియం మెటీరియల్స్ మరియు సమయ-పరీక్షించిన టెక్నిక్‌లను మాత్రమే ఉపయోగిస్తాము.",
       },
       {
         icon: Clock,
         title: "సమయానికి డెలివరీ",
-        description: "మీ ప్రత్యేక సందర్భాల ప్రాముఖ్యతను మేము అర్థం చేసుకుంటాము. వాగ్దానం చేసినప్పుడు మీ దుస్తులు సిద్ధంగా ఉంటాయి.",
+        description:
+          "మీ ప్రత్యేక సందర్భాల ప్రాముఖ్యతను మేము అర్థం చేసుకుంటాము. వాగ్దానం చేసినప్పుడు మీ దుస్తులు సిద్ధంగా ఉంటాయి.",
       },
       {
         icon: Users,
         title: "మహిళల సౌకర్యం",
-        description: "మా స్థలం మహిళల కోసం మహిళలచే రూపొందించబడింది. అన్ని ఫిట్టింగ్‌లు మరియు సంప్రదింపుల సమయంలో సౌకర్యంగా అనుభవించండి.",
+        description:
+          "మా స్థలం మహిళల కోసం మహిళలచే రూపొందించబడింది. అన్ని ఫిట్టింగ్‌లు మరియు సంప్రదింపుల సమయంలో సౌకర్యంగా అనుభవించండి.",
       },
     ],
     milestones: [
@@ -108,9 +118,7 @@ const About = () => {
             <h1 className="font-heading text-3xl md:text-6xl font-bold text-foreground mb-6">
               {t.title}
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {t.intro}
-            </p>
+            <p className="text-muted-foreground text-lg leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
@@ -144,9 +152,7 @@ const About = () => {
                   <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center border-2 border-accent">
                     <Star className="w-4 h-4 text-accent fill-accent" />
                   </div>
-                  {index < t.story.length - 1 && (
-                    <div className="w-0.5 flex-1 bg-accent/30 mt-2" />
-                  )}
+                  {index < t.story.length - 1 && <div className="w-0.5 flex-1 bg-accent/30 mt-2" />}
                 </div>
                 <div className="flex-1 pb-8">
                   <p className="text-foreground">{item}</p>

@@ -45,15 +45,11 @@ export function Footer({ language }: FooterProps) {
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>
-                <h3 className="font-heading text-cream text-xl font-semibold">
-                  Lakshmi Fashion
-                </h3>
+                <h3 className="font-heading text-cream text-xl font-semibold">Lakshmi Fashion</h3>
                 <p className="text-accent text-sm">& Designers</p>
               </div>
             </Link>
-            <p className="text-muted-foreground text-sm leading-relaxed italic">
-              "{t.tagline}"
-            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed italic">"{t.tagline}"</p>
             {/* Social Icons */}
             <div className="flex gap-4 mt-6">
               <a
@@ -85,9 +81,7 @@ export function Footer({ language }: FooterProps) {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading text-cream text-lg font-semibold mb-4">
-              {t.services}
-            </h4>
+            <h4 className="font-heading text-cream text-lg font-semibold mb-4">{t.services}</h4>
             <ul className="space-y-3">
               {t.servicesList.map((service, index) => (
                 <li key={index}>
@@ -104,9 +98,7 @@ export function Footer({ language }: FooterProps) {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading text-cream text-lg font-semibold mb-4">
-              {t.quickLinks}
-            </h4>
+            <h4 className="font-heading text-cream text-lg font-semibold mb-4">{t.quickLinks}</h4>
             <ul className="space-y-3">
               {t.linksList.map((link, index) => (
                 <li key={index}>
@@ -123,14 +115,13 @@ export function Footer({ language }: FooterProps) {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading text-cream text-lg font-semibold mb-4">
-              {t.contact}
-            </h4>
+            <h4 className="font-heading text-cream text-lg font-semibold mb-4">{t.contact}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground text-sm">
-                  Old Check Post Center, Krishna Nagar,<br />
+                  Old Check Post Center, Krishna Nagar,
+                  <br />
                   Yanamalakuduru Road, Vijayawada
                 </span>
               </li>

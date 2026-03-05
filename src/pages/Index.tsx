@@ -9,7 +9,6 @@ import { HowWeWork } from "@/components/home/HowWeWork";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 
-
 const Index = () => {
   const { language, setLanguage } = useLanguage();
 
@@ -23,7 +22,6 @@ const Index = () => {
       <HowWeWork language={language} />
       <ProductsPreview language={language} />
       <TestimonialsSection language={language} />
-
     </Layout>
   );
 };

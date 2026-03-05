@@ -11,10 +11,7 @@ const NotFound = () => {
   const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
+    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
   }, [location.pathname]);
 
   return (
@@ -49,15 +46,17 @@ const NotFound = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <h2 className="text-2xl md:text-3xl font-heading text-cream mb-4">
-            Details Missing?
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-heading text-cream mb-4">Details Missing?</h2>
           <p className="text-cream/60 max-w-md mx-auto mb-8 text-lg">
-            It seems the page you're looking for hasn't been stitched together yet. Let's get you back to the collection.
+            It seems the page you're looking for hasn't been stitched together yet. Let's get you
+            back to the collection.
           </p>
 
           <Link to="/">
-            <Button size="lg" className="bg-gradient-gold text-maroon-dark hover:shadow-gold hover:scale-105 transition-all duration-300 font-semibold group">
+            <Button
+              size="lg"
+              className="bg-gradient-gold text-maroon-dark hover:shadow-gold hover:scale-105 transition-all duration-300 font-semibold group"
+            >
               Return Home
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>

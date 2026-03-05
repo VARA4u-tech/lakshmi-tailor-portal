@@ -8,7 +8,9 @@ import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/layout/PageTransition";
 
 // Lazy load pages for performance
-const WelcomePage = lazy(() => import("./pages/Welcome").then(module => ({ default: module.WelcomePage })));
+const WelcomePage = lazy(() =>
+  import("./pages/Welcome").then((module) => ({ default: module.WelcomePage })),
+);
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
@@ -28,51 +30,78 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={
-          <PageTransition title="Welcome">
-            <WelcomePage />
-          </PageTransition>
-        } />
-        <Route path="/home" element={
-          <PageTransition title="Home">
-            <Index />
-          </PageTransition>
-        } />
-        <Route path="/about" element={
-          <PageTransition title="About Us">
-            <About />
-          </PageTransition>
-        } />
-        <Route path="/services" element={
-          <PageTransition title="Our Services">
-            <Services />
-          </PageTransition>
-        } />
-        <Route path="/products" element={
-          <PageTransition title="Collections">
-            <Products />
-          </PageTransition>
-        } />
-        <Route path="/gallery" element={
-          <PageTransition title="Gallery">
-            <Gallery />
-          </PageTransition>
-        } />
-        <Route path="/contact" element={
-          <PageTransition title="Contact Us">
-            <Contact />
-          </PageTransition>
-        } />
-        <Route path="/admin" element={
-          <PageTransition title="Admin Dashboard">
-            <Admin />
-          </PageTransition>
-        } />
-        <Route path="*" element={
-          <PageTransition title="Page Not Found">
-            <NotFound />
-          </PageTransition>
-        } />
+        <Route
+          path="/"
+          element={
+            <PageTransition title="Welcome">
+              <WelcomePage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PageTransition title="Home">
+              <Index />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PageTransition title="About Us">
+              <About />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/services"
+          element={
+            <PageTransition title="Our Services">
+              <Services />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <PageTransition title="Collections">
+              <Products />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/gallery"
+          element={
+            <PageTransition title="Gallery">
+              <Gallery />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageTransition title="Contact Us">
+              <Contact />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <PageTransition title="Admin Dashboard">
+              <Admin />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <PageTransition title="Page Not Found">
+              <NotFound />
+            </PageTransition>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );

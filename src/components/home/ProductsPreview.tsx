@@ -46,7 +46,8 @@ const sectionContent = {
   en: {
     subtitle: "Fancy Store",
     title: "Beautiful Accessories",
-    description: "Complete your look with our curated collection of jewelry, bangles, and fashion accessories.",
+    description:
+      "Complete your look with our curated collection of jewelry, bangles, and fashion accessories.",
     cta: "Explore All Products",
     inStock: "In Stock",
     outOfStock: "Out of Stock",
@@ -54,7 +55,8 @@ const sectionContent = {
   te: {
     subtitle: "ఫ్యాన్సీ స్టోర్",
     title: "అందమైన యాక్సెసరీలు",
-    description: "మా క్యూరేటెడ్ జ్యువెలరీ, బ్యాగులు మరియు ఫ్యాషన్ యాక్సెసరీల సేకరణతో మీ లుక్పు పూర్తి చేయండి.",
+    description:
+      "మా క్యూరేటెడ్ జ్యువెలరీ, బ్యాగులు మరియు ఫ్యాషన్ యాక్సెసరీల సేకరణతో మీ లుక్పు పూర్తి చేయండి.",
     cta: "అన్ని ప్రొడక్ట్‌లను ప్రోదేశించండి",
     inStock: "స్టాక్‌లో ఉంది",
     outOfStock: "స్టాక్ అయిపోయింది",
@@ -88,11 +90,14 @@ export function ProductsPreview({ language }: ProductsPreviewProps) {
         {/* Products Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {products.map((product, index) => (
-            <ScrollReveal key={product.id} direction="up" delay={index * 0.1} duration={0.5} width="100%">
-              <Card
-                variant="elevated"
-                className="group overflow-hidden hover-lift h-full"
-              >
+            <ScrollReveal
+              key={product.id}
+              direction="up"
+              delay={index * 0.1}
+              duration={0.5}
+              width="100%"
+            >
+              <Card variant="elevated" className="group overflow-hidden hover-lift h-full">
                 <div className="aspect-square relative overflow-hidden">
                   <img
                     src={product.image}
@@ -101,10 +106,11 @@ export function ProductsPreview({ language }: ProductsPreviewProps) {
                   />
                   {/* Stock Badge */}
                   <div
-                    className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${product.inStock
-                      ? "bg-success/20 text-success"
-                      : "bg-destructive/20 text-destructive"
-                      }`}
+                    className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${
+                      product.inStock
+                        ? "bg-success/20 text-success"
+                        : "bg-destructive/20 text-destructive"
+                    }`}
                   >
                     {product.inStock ? t.inStock : t.outOfStock}
                   </div>
@@ -116,7 +122,6 @@ export function ProductsPreview({ language }: ProductsPreviewProps) {
                   <h3 className="font-heading font-semibold text-foreground mb-2 line-clamp-1">
                     {product.name[language]}
                   </h3>
-
                 </CardContent>
               </Card>
             </ScrollReveal>

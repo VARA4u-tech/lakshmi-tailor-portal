@@ -9,19 +9,23 @@ interface CTASectionProps {
 const content = {
   en: {
     title: "Ready to Look Your Best?",
-    description: "Visit our store or reach out to discuss your tailoring needs. We'd love to create something beautiful for you.",
+    description:
+      "Visit our store or reach out to discuss your tailoring needs. We'd love to create something beautiful for you.",
     cta: "Book Appointment",
     whatsapp: "Chat on WhatsApp",
     phone: "+91 93814 87134",
-    address: "old check post center, krishna nagar, yanamalakuduru road, near commercial tax office, vijayawada",
+    address:
+      "old check post center, krishna nagar, yanamalakuduru road, near commercial tax office, vijayawada",
   },
   te: {
     title: "మీ ఉత్తమంగా కనిపించడానికి సిద్ధంగా ఉన్నారా?",
-    description: "మా స్టోర్‌ను సందర్శించండి లేదా మీ టైలరింగ్ అవసరాలను చర్చించడానికి సంప్రదించండి. మీ కోసం ఏదైనా అందమైనది సృష్టించడానికి మేము ఇష్టపడతాము.",
+    description:
+      "మా స్టోర్‌ను సందర్శించండి లేదా మీ టైలరింగ్ అవసరాలను చర్చించడానికి సంప్రదించండి. మీ కోసం ఏదైనా అందమైనది సృష్టించడానికి మేము ఇష్టపడతాము.",
     cta: "అపాయింట్‌మెంట్ బుక్ చేయండి",
     whatsapp: "WhatsApp లో చాట్ చేయండి",
     phone: "+91 93814 87134",
-    address: "old check post center, krishna nagar, yanamalakuduru road,near commercial tax office, vijayawada",
+    address:
+      "old check post center, krishna nagar, yanamalakuduru road,near commercial tax office, vijayawada",
   },
 };
 
@@ -31,7 +35,7 @@ export function CTASection({ language }: CTASectionProps) {
   const handleWhatsApp = () => {
     window.open(
       "https://wa.me/9381487134?text=Hi! I'm interested in your tailoring services.",
-      "_blank"
+      "_blank",
     );
   };
 
@@ -50,9 +54,7 @@ export function CTASection({ language }: CTASectionProps) {
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-cream mb-6">
             {t.title}
           </h2>
-          <p className="text-cream/80 text-lg mb-10 max-w-xl mx-auto">
-            {t.description}
-          </p>
+          <p className="text-cream/80 text-lg mb-10 max-w-xl mx-auto">{t.description}</p>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -61,11 +63,7 @@ export function CTASection({ language }: CTASectionProps) {
                 {t.cta}
               </Button>
             </Link>
-            <Button
-              variant="whatsapp"
-              size="xl"
-              onClick={handleWhatsApp}
-            >
+            <Button variant="whatsapp" size="xl" onClick={handleWhatsApp}>
               <MessageCircle className="w-5 h-5" />
               {t.whatsapp}
             </Button>

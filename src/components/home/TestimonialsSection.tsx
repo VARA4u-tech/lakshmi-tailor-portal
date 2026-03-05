@@ -192,8 +192,9 @@ export function TestimonialsSection({ language }: TestimonialsSectionProps) {
                 <Card
                   key={testimonial.id}
                   variant="glass"
-                  className={`relative transition-all duration-500 ${idx === 0 ? "scale-105 shadow-xl" : "scale-95 opacity-75"
-                    }`}
+                  className={`relative transition-all duration-500 ${
+                    idx === 0 ? "scale-105 shadow-xl" : "scale-95 opacity-75"
+                  }`}
                 >
                   <CardContent className="p-6">
                     <Quote className="w-10 h-10 text-accent/30 mb-4" />
@@ -235,10 +236,11 @@ export function TestimonialsSection({ language }: TestimonialsSectionProps) {
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                  ? "bg-accent w-8"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                  }`}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "bg-accent w-8"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
