@@ -24,7 +24,9 @@
 - 👔 **Service Showcases**: Detailed catalog of tailoring services including Bridal Lehengas, Designer Blouses, and more.
 - 🛍️ **Product Catalog**: Dynamic product listing with category filtering and real-time stock status.
 - 🖼️ **Immersive Gallery**: High-performance image gallery featuring custom tailoring work.
-- 🔐 **Admin Portal**: Secure management system to update products, gallery items, and business info using Supabase Auth.
+- 🤖 **AI-Powered Collections**: Personalized product recommendations based on tailoring preferences.
+- 🔐 **Admin Portal**: Comprehensive dashboard to manage products, gallery, and customer enquiries.
+- 📧 **Enquiry Management**: Automated system to track and handle customer tailoring requests.
 - 📱 **Mobile Responsive**: Fully optimized for desktop, tablet, and mobile with glassmorphic UI components.
 - 💬 **Direct Integration**: Instant WhatsApp and Call integration for customer enquiries.
 - 🎨 **Premium UI/UX**: Built with Framer Motion for smooth animations and Shadcn UI for a polished look.
@@ -34,11 +36,12 @@
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 18, Vite, TypeScript
+- **Backend (API)**: Node.js, Express, Supabase (PostgreSQL)
+- **ML Service**: Python, FastAPI, Scikit-learn, Pandas
 - **Styling**: Tailwind CSS, Shadcn UI, Lucide Icons
-- **Backend & Auth**: Supabase (PostgreSQL)
 - **Animations**: Framer Motion
-- **Form Handling**: React Hook Form, Zod
-- **Type Safety**: Full TypeScript integration with `tsc --noEmit` checks
+- **Communication**: Resend (Email Notifications)
+- **Type Safety**: Full TypeScript integration with full-stack consistency
 
 ---
 
@@ -55,18 +58,32 @@
 
    ```bash
    git clone <repo-url>
-   cd lakshmi-tailor-portal/frontend
+   cd lakshmi-tailor-portal
    ```
 
-2. **Install dependencies**
+2. **Setup Frontend**
 
    ```bash
+   cd frontend
    npm install
+   npm run dev
    ```
 
-3. **Run development server**
+3. **Setup Backend (Node.js)**
+
    ```bash
+   cd ../backend
+   npm install
    npm run dev
+   ```
+
+4. **Setup ML Service (Python)**
+   ```bash
+   cd ../ml-service
+   python -m venv venv
+   source venv/bin/activate  # or venv\Scripts\activate on Windows
+   pip install -r requirements.txt
+   python main.py
    ```
 
 ---
@@ -74,17 +91,18 @@
 ## 📐 Project Structure
 
 ```text
-├── frontend/
+├── frontend/            # React + Vite Frontend
 │   ├── src/             # Frontend source code
-│   │   ├── components/  # Reusable UI & Layout components
-│   │   ├── contexts/    # Language & Global state management
-│   │   ├── hooks/       # Custom React hooks
-│   │   ├── lib/         # Third-party configurations (Supabase, Utils)
-│   │   ├── pages/       # Individual page views
-│   │   └── assets/      # Static assets (Images, Logos)
-│   ├── public/          # Global static assets
-│   ├── tailwind.config.ts # Custom theme & color tokens
-│   └── package.json     # Frontend dependencies
+│   │   ├── components/  # AI & UI Layout components
+│   │   ├── pages/       # Admin & Customer views
+│   │   └── lib/         # API & Supabase clients
+├── backend/             # Node.js + Express API
+│   ├── src/             # Routing & Business Logic
+│   │   ├── routes/      # Enquiries & Product APIs
+│   │   └── utils/       # ML Integration & Mailer
+├── ml-service/          # Python AI Microservice
+│   ├── main.py          # FastAPI recommendation engine
+│   └── requirements.txt # Python dependencies
 └── README.md            # Root documentation
 ```
 
