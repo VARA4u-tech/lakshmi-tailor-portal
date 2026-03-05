@@ -1,73 +1,100 @@
-# Welcome to your Lovable project
+# 🪡 Lakshmi Fashion & Designers
 
-## Project info
+### Premium Women's Tailoring & Fancy Store Portal
 
-**URL**: https://lovable.dev/projects/c5546817-07fd-4a47-bf58-c37790dff06c
+[![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ✨ Overview
 
-**Use Lovable**
+**Lakshmi Fashion & Designers** is a modern, high-performance web portal built for a premium tailoring and fancy store located in Vijayawada. The portal offers a seamless experience for customers to explore services, view product collections, and interact with the business across multiple languages (English & Telugu).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c5546817-07fd-4a47-bf58-c37790dff06c) and start prompting.
+## 🚀 Key Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- 🌐 **Multi-language Support**: Fully localized in English and Telugu (`i18n`).
+- 👔 **Service Showcases**: Detailed catalog of tailoring services including Bridal Lehengas, Designer Blouses, and more.
+- 🛍️ **Product Catalog**: Dynamic product listing with category filtering and real-time stock status.
+- 🖼️ **Immersive Gallery**: High-performance image gallery featuring custom tailoring work.
+- 🔐 **Admin Portal**: Secure management system to update products, gallery items, and business info using Supabase Auth.
+- 📱 **Mobile Responsive**: Fully optimized for desktop, tablet, and mobile with glassmorphic UI components.
+- 💬 **Direct Integration**: Instant WhatsApp and Call integration for customer enquiries.
+- 🎨 **Premium UI/UX**: Built with Framer Motion for smooth animations and Shadcn UI for a polished look.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Tech Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend**: React 18, Vite, TypeScript
+- **Styling**: Tailwind CSS, Shadcn UI, Lucide Icons
+- **Backend & Auth**: Supabase (PostgreSQL)
+- **Animations**: Framer Motion
+- **Form Handling**: React Hook Form, Zod
+- **Type Safety**: Full TypeScript integration with `tsc --noEmit` checks
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📦 Getting Started
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Prerequisites
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Node.js (v18+)
+- npm
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repo-url>
+   cd lakshmi-tailor-portal
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run development server**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📐 Project Structure
+
+```text
+├── src/
+│   ├── components/      # Reusable UI & Layout components
+│   ├── contexts/        # Language & Global state management
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/             # Third-party configurations (Supabase, Utils)
+│   ├── pages/           # Individual page views
+│   └── assets/          # Static assets (Images, Logos)
+├── public/              # Global static assets
+└── tailwind.config.ts   # Custom theme & color tokens
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📜 Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev`: Starts the Vite development server.
+- `npm run build`: Builds the production bundle.
+- `npm run lint`: Runs ESLint for code quality checks.
+- `npm run format`: Formats code using Prettier.
+- `npm run type-check`: Performs TypeScript static type checking.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 👩‍💻 Developed By
 
-This project is built with:
+**Vara4u Tech / Lakshmi Fashion Team**
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c5546817-07fd-4a47-bf58-c37790dff06c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+_"Tailoring is not just about making clothes, it's about making people feel beautiful."_
