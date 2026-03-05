@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Filter, Loader2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { MessageCircle, Filter, Loader2, IndianRupee, ShoppingBag } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -76,9 +83,39 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [recommendations, setRecommendations] = useState<Product[]>([]);
+  const [recommendationsLoading, setRecommendationsLoading] = useState(false);
 
   const t = pageContent[language];
   const categoryList = categories[language];
+
+  const fetchRecommendations = async (productId: string) => {
+    setRecommendationsLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/products/recommendations/${productId}`,
+      );
+      const data = await response.json();
+      if (data.success) {
+        setRecommendations(data.recommendations);
+      }
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    } finally {
+      setRecommendationsLoading(false);
+    }
+  };
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    if (!product.id.startsWith("lp-")) {
+      // Only fetch for real DB products
+      fetchRecommendations(product.id);
+    } else {
+      setRecommendations([]);
+    }
+  };
 
   const localProducts: Product[] = [
     // Earrings
@@ -224,20 +261,20 @@ const Products = () => {
 
   const fetchProducts = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("products")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
+      const data = await response.json();
+      if (data.success) {
+        setProducts([...(data.products || []), ...localProducts]);
+      } else {
+        setProducts(localProducts);
+      }
+    } catch (error) {
       console.error("Error fetching products:", error);
-      // On error, still show local products
       setProducts(localProducts);
-    } else {
-      // Merge fetched data with local products
-      setProducts([...(data || []), ...localProducts]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const filteredProducts =
@@ -303,7 +340,8 @@ const Products = () => {
                 <Card
                   key={product.id}
                   variant="elevated"
-                  className="group overflow-hidden hover-lift"
+                  className="group overflow-hidden hover-lift cursor-pointer"
+                  onClick={() => handleProductClick(product)}
                 >
                   <div className="aspect-square relative overflow-hidden">
                     <img
@@ -330,11 +368,16 @@ const Products = () => {
                       {language === "en" ? product.name_en : product.name_te}
                     </h3>
                     <div className="flex items-center justify-between mt-2">
-                      <p className="text-sm font-medium text-foreground/80">{t.contactPrice}</p>
+                      <p className="text-sm font-medium text-foreground/80">
+                        {product.price > 0 ? `₹${product.price}` : t.contactPrice}
+                      </p>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => handleEnquire(product.name_en)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEnquire(product.name_en);
+                        }}
                         disabled={!product.in_stock}
                       >
                         <MessageCircle className="w-4 h-4" />
@@ -347,6 +390,125 @@ const Products = () => {
           )}
         </div>
       </section>
+
+      {/* Product Detail Modal */}
+      <Dialog open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          {selectedProduct && (
+            <div className="grid md:grid-cols-2 gap-8 pt-6">
+              {/* Product Image */}
+              <div className="aspect-square relative overflow-hidden rounded-xl border border-border/30">
+                <img
+                  src={selectedProduct.image_url}
+                  alt={language === "en" ? selectedProduct.name_en : selectedProduct.name_te}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Product Info */}
+              <div className="flex flex-col">
+                <DialogHeader className="p-0 text-left mb-6">
+                  <p className="text-accent font-medium mb-2">
+                    {language === "en" ? selectedProduct.category : selectedProduct.category_te}
+                  </p>
+                  <DialogTitle className="text-3xl font-heading font-bold">
+                    {language === "en" ? selectedProduct.name_en : selectedProduct.name_te}
+                  </DialogTitle>
+                </DialogHeader>
+
+                <div className="flex items-center gap-2 mb-6">
+                  <div
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      selectedProduct.in_stock
+                        ? "bg-success/10 text-[hsl(142,76%,36%)]"
+                        : "bg-destructive/10 text-destructive"
+                    }`}
+                  >
+                    {selectedProduct.in_stock ? t.inStock : t.outOfStock}
+                  </div>
+                </div>
+
+                <div className="flex items-baseline gap-2 mb-8">
+                  {selectedProduct.price > 0 && <IndianRupee className="w-5 h-5 text-foreground" />}
+                  <span className="text-3xl font-bold">
+                    {selectedProduct.price > 0 ? selectedProduct.price : t.contactPrice}
+                  </span>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                  <h4 className="font-semibold">{language === "en" ? "Description" : "వివరణ"}</h4>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {language === "en"
+                      ? "Premium quality fashion product handcrafted for perfection. Available in various colors and designs."
+                      : "ఖచ్చితత్వం కోసం రూపొందించబడిన ప్రీమియం నాణ్యత ఫ్యాషన్ ఉత్పత్తి. వివిధ రంగులు మరియు డిజైన్లలో అందుబాటులో ఉంది."}
+                  </p>
+                </div>
+
+                <div className="mt-auto space-y-3">
+                  <Button
+                    className="w-full gap-2 h-12 text-lg"
+                    onClick={() => handleEnquire(selectedProduct.name_en)}
+                    disabled={!selectedProduct.in_stock}
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    {t.enquire}
+                  </Button>
+                  <p className="text-xs text-center text-muted-foreground">
+                    {language === "en"
+                      ? "Get personalized tailoring advice for this product"
+                      : "ఈ ఉత్పత్తి కోసం వ్యక్తిగతీకరించిన టైలరింగ్ సలహాలను పొందండి"}
+                  </p>
+                </div>
+              </div>
+
+              {/* Related Products Section */}
+              <div className="md:col-span-2 mt-8 pt-8 border-t border-border/30">
+                <div className="flex items-center gap-2 mb-6">
+                  <ShoppingBag className="w-5 h-5 text-accent" />
+                  <h4 className="text-xl font-heading font-bold">
+                    {language === "en"
+                      ? "Related Products (AI Recommendations)"
+                      : "సంబంధిత ఉత్పత్తులు (AI సిఫార్సులు)"}
+                  </h4>
+                </div>
+
+                {recommendationsLoading ? (
+                  <div className="flex justify-center py-8">
+                    <Loader2 className="w-6 h-6 animate-spin text-accent" />
+                  </div>
+                ) : recommendations.length > 0 ? (
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {recommendations.map((rec) => (
+                      <div
+                        key={rec.id}
+                        className="group cursor-pointer"
+                        onClick={() => handleProductClick(rec)}
+                      >
+                        <div className="aspect-square rounded-lg overflow-hidden border border-border/30 mb-2">
+                          <img
+                            src={rec.image_url}
+                            alt={language === "en" ? rec.name_en : rec.name_te}
+                            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          />
+                        </div>
+                        <h5 className="text-sm font-medium line-clamp-1 group-hover:text-accent transition-colors">
+                          {language === "en" ? rec.name_en : rec.name_te}
+                        </h5>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground italic">
+                    {language === "en"
+                      ? "No recommendations found for this item."
+                      : "ఈ ఐటెమ్ కోసం ఎటువంటి సిఫార్సులు కనుగొనబడలేదు."}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };

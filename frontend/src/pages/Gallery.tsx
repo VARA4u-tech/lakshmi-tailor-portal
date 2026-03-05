@@ -56,17 +56,17 @@ const Gallery = () => {
 
   const fetchGalleryItems = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from("gallery")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/gallery`);
+      const data = await response.json();
+      if (data.success) {
+        setGalleryItems(data.gallery || []);
+      }
+    } catch (error) {
       console.error("Error fetching gallery items:", error);
-    } else {
-      setGalleryItems(data || []);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   // Show all items under the "Tailoring" heading

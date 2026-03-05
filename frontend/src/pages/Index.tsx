@@ -8,6 +8,7 @@ import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { HowWeWork } from "@/components/home/HowWeWork";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { AICollections } from "@/components/home/AICollections";
 
 const Index = () => {
   const { language, setLanguage } = useLanguage();
@@ -20,6 +21,7 @@ const Index = () => {
       <WhyChooseUs language={language} />
       <FeaturedWork language={language} />
       <HowWeWork language={language} />
+      <AICollections language={language} />
       <ProductsPreview language={language} />
       <TestimonialsSection language={language} />
     </Layout>

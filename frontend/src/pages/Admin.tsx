@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ import {
   Package,
   Store,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Layout } from "@/components/layout/Layout";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -42,6 +43,15 @@ interface GalleryItem {
   image_url: string;
 }
 
+interface Enquiry {
+  id: string;
+  name: string;
+  phone: string;
+  message: string;
+  status: "new" | "in_progress" | "resolved";
+  created_at: string;
+}
+
 type AdminView = "dashboard" | "products" | "gallery" | "enquiries";
 
 const Admin = () => {
@@ -58,6 +68,7 @@ const Admin = () => {
   // Data States
   const [products, setProducts] = useState<Product[]>([]);
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [fetchLoading, setFetchLoading] = useState(false);
 
   // Form States
@@ -77,6 +88,53 @@ const Admin = () => {
     image_url: "",
   });
 
+  const fetchProducts = useCallback(async () => {
+    setFetchLoading(true);
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) console.error("Error fetching products:", error);
+    else setProducts(data || []);
+    setFetchLoading(false);
+  }, []);
+
+  const fetchGalleryItems = useCallback(async () => {
+    setFetchLoading(true);
+    const { data, error } = await supabase
+      .from("gallery")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) console.error("Error fetching gallery:", error);
+    else setGalleryItems(data || []);
+    setFetchLoading(false);
+  }, []);
+
+  const fetchEnquiries = useCallback(
+    async (token?: string) => {
+      const jwt = token || session?.access_token;
+      if (!jwt) return;
+
+      setFetchLoading(true);
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/enquiries`, {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        });
+        const data = await response.json();
+        if (data.success) {
+          setEnquiries(data.enquiries);
+        }
+      } catch (error) {
+        console.error("Error fetching enquiries:", error);
+      } finally {
+        setFetchLoading(false);
+      }
+    },
+    [session],
+  );
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -84,6 +142,7 @@ const Admin = () => {
       if (session) {
         fetchProducts();
         fetchGalleryItems();
+        fetchEnquiries(session.access_token);
       }
     });
 
@@ -94,32 +153,51 @@ const Admin = () => {
       if (session) {
         fetchProducts();
         fetchGalleryItems();
+        fetchEnquiries(session?.access_token);
       }
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [fetchProducts, fetchGalleryItems, fetchEnquiries]);
 
-  const fetchProducts = async () => {
-    setFetchLoading(true);
-    const { data, error } = await supabase
-      .from("products")
-      .select("*")
-      .order("created_at", { ascending: false });
-    if (error) console.error("Error fetching products:", error);
-    else setProducts(data || []);
-    setFetchLoading(false);
+  const updateEnquiryStatus = async (id: string, status: string) => {
+    if (!session) return;
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/enquiries/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ status }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        toast({ title: "Updated", description: "Status updated successfully." });
+        fetchEnquiries();
+      }
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to update status.", variant: "destructive" });
+    }
   };
 
-  const fetchGalleryItems = async () => {
-    setFetchLoading(true);
-    const { data, error } = await supabase
-      .from("gallery")
-      .select("*")
-      .order("created_at", { ascending: false });
-    if (error) console.error("Error fetching gallery:", error);
-    else setGalleryItems(data || []);
-    setFetchLoading(false);
+  const deleteEnquiry = async (id: string) => {
+    if (!session || !confirm("Delete this enquiry forever?")) return;
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/enquiries/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+      const data = await response.json();
+      if (data.success) {
+        toast({ title: "Deleted", description: "Enquiry removed." });
+        fetchEnquiries();
+      }
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to delete.", variant: "destructive" });
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -362,7 +440,7 @@ const Admin = () => {
                     />
                     <DashboardCard
                       title="Pending Enquiries"
-                      value={0}
+                      value={enquiries.filter((e) => e.status !== "resolved").length}
                       icon={<MessageSquare className="text-accent" />}
                       onClick={() => setActiveView("enquiries")}
                     />
@@ -749,21 +827,93 @@ const Admin = () => {
                     <Button variant="ghost" size="icon" onClick={() => setActiveView("dashboard")}>
                       <ArrowLeft className="w-5 h-5" />
                     </Button>
-                    <h2 className="text-3xl font-heading font-bold">Enquiries</h2>
+                    <h2 className="text-3xl font-heading font-bold">Customer Enquiries</h2>
                   </div>
-                  <Card className="border-accent/10 py-20 bg-secondary/10">
-                    <CardContent className="flex flex-col items-center justify-center text-center space-y-4">
-                      <div className="w-20 h-20 bg-accent/5 rounded-full flex items-center justify-center">
-                        <MessageSquare className="w-10 h-10 text-accent/40" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-2xl mb-2">No Enquiries Yet</CardTitle>
-                        <p className="text-muted-foreground">
-                          When customers contact you, their messages will appear here.
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
+
+                  {fetchLoading ? (
+                    <div className="flex justify-center py-20">
+                      <Loader2 className="w-8 h-8 animate-spin text-accent" />
+                    </div>
+                  ) : enquiries.length === 0 ? (
+                    <Card className="border-accent/10 py-20 bg-secondary/10">
+                      <CardContent className="flex flex-col items-center justify-center text-center space-y-4">
+                        <div className="w-20 h-20 bg-accent/5 rounded-full flex items-center justify-center">
+                          <MessageSquare className="w-10 h-10 text-accent/40" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-2xl mb-2">No Enquiries Yet</CardTitle>
+                          <p className="text-muted-foreground">
+                            When customers contact you, their messages will appear here.
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ) : (
+                    <div className="grid gap-6">
+                      {enquiries.map((enquiry) => (
+                        <Card key={enquiry.id} className="border-accent/10 overflow-hidden group">
+                          <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                              <div className="space-y-1">
+                                <div className="flex items-center gap-3">
+                                  <h3 className="text-xl font-bold">{enquiry.name}</h3>
+                                  <Badge
+                                    variant={
+                                      enquiry.status === "new"
+                                        ? "default"
+                                        : enquiry.status === "in_progress"
+                                          ? "secondary"
+                                          : "outline"
+                                    }
+                                  >
+                                    {enquiry.status.replace("_", " ")}
+                                  </Badge>
+                                </div>
+                                <p className="text-accent font-medium">{enquiry.phone}</p>
+                                <p className="text-sm text-muted-foreground">
+                                  {new Date(enquiry.created_at).toLocaleDateString()} at{" "}
+                                  {new Date(enquiry.created_at).toLocaleTimeString()}
+                                </p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <select
+                                  className="h-9 w-32 rounded-md border border-input bg-background px-3 py-1 text-xs"
+                                  value={enquiry.status}
+                                  onChange={(e) => updateEnquiryStatus(enquiry.id, e.target.value)}
+                                >
+                                  <option value="new">New</option>
+                                  <option value="in_progress">In Progress</option>
+                                  <option value="resolved">Resolved</option>
+                                </select>
+                                <Button
+                                  variant="destructive"
+                                  size="icon"
+                                  className="h-9 w-9 opacity-0 group-hover:opacity-100 transition-opacity"
+                                  onClick={() => deleteEnquiry(enquiry.id)}
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() =>
+                                    window.open(`https://wa.me/91${enquiry.phone}`, "_blank")
+                                  }
+                                >
+                                  Reply on WhatsApp
+                                </Button>
+                              </div>
+                            </div>
+                            <div className="mt-6 p-4 rounded-lg bg-secondary/30 border border-border/50">
+                              <p className="text-foreground leading-relaxed italic">
+                                "{enquiry.message}"
+                              </p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </motion.div>
