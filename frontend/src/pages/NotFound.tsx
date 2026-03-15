@@ -52,7 +52,7 @@ const NotFound = () => {
             back to the collection.
           </p>
 
-          <Link to="/">
+          <Link to="/home">
             <Button
               size="lg"
               className="bg-gradient-gold text-maroon-dark hover:shadow-gold hover:scale-105 transition-all duration-300 font-semibold group"

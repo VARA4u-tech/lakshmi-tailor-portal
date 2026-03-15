@@ -34,66 +34,66 @@ export function WelcomePage() {
 
       {/* Content */}
       <div
-        className={`relative z-10 text-center transition-all duration-1000 ${
+        className={`relative z-10 text-center transition-all duration-1000 flex flex-col items-center justify-center h-full max-h-screen py-4 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
         {/* Logo */}
-        <div className="mb-8 flex justify-center">
+        <div className="mb-4 md:mb-6 flex justify-center">
           <div className="relative">
             <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl animate-pulse" />
             <img
               src={logo}
               alt="Lakshmi Fashion & Designers"
-              className="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-accent shadow-2xl shadow-accent/30 relative z-10"
+              className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 border-accent shadow-2xl shadow-accent/30 relative z-10"
             />
           </div>
         </div>
 
         {/* Brand Name */}
-        <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+        <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
           <span className="text-gradient-gold">Lakshmi Fashion</span>
         </h1>
-        <p className="font-heading text-2xl md:text-3xl text-accent mb-6">& Designers</p>
+        <p className="font-heading text-xl md:text-2xl text-accent mb-4">& Designers</p>
 
         {/* Caption */}
-        <p className="text-cream/90 text-lg md:text-xl italic mb-4 max-w-2xl mx-auto px-4">
+        <p className="text-cream/90 text-sm md:text-lg italic mb-3 max-w-2xl mx-auto px-4">
           "Tailoring is not just about making clothes, it's about making people."
         </p>
 
         {/* Tagline */}
-        <div className="flex items-center justify-center gap-2 mb-12">
-          <Sparkles className="w-5 h-5 text-accent" />
-          <p className="text-muted-foreground text-sm md:text-base">
+        <div className="flex items-center justify-center gap-2 mb-6 md:mb-8">
+          <Sparkles className="w-4 h-4 text-accent" />
+          <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-wider">
             Premium Women's Tailoring & Fancy Store
           </p>
-          <Sparkles className="w-5 h-5 text-accent" />
+          <Sparkles className="w-4 h-4 text-accent" />
         </div>
 
         {/* CTA Button */}
         <Button
           variant="hero"
-          size="xl"
+          size="lg"
           onClick={handleStartJourney}
-          className="group animate-pulse-gold"
+          className="group animate-pulse-gold min-w-[200px]"
         >
           Start Your Journey
           <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
         </Button>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 mt-16 max-w-2xl mx-auto px-4">
-          <div className="text-center">
-            <p className="font-heading text-3xl md:text-4xl font-bold text-accent">20+</p>
-            <p className="text-muted-foreground text-xs md:text-sm">Years Experience</p>
+        <div className="grid grid-cols-3 gap-4 md:gap-12 mt-8 md:mt-12 max-w-2xl mx-auto px-4 border-t border-accent/10 pt-6 md:pt-8 w-full">
+          <div className="text-center group">
+            <p className="font-heading text-2xl md:text-4xl font-bold text-accent transition-transform group-hover:scale-110">20+</p>
+            <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-tighter">Years Experience</p>
           </div>
-          <div className="text-center">
-            <p className="font-heading text-3xl md:text-4xl font-bold text-accent">5000+</p>
-            <p className="text-muted-foreground text-xs md:text-sm">Happy Customers</p>
+          <div className="text-center group">
+            <p className="font-heading text-2xl md:text-4xl font-bold text-accent transition-transform group-hover:scale-110">5000+</p>
+            <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-tighter">Happy Customers</p>
           </div>
-          <div className="text-center">
-            <p className="font-heading text-3xl md:text-4xl font-bold text-accent">100+</p>
-            <p className="text-muted-foreground text-xs md:text-sm">Bridal Dresses</p>
+          <div className="text-center group">
+            <p className="font-heading text-2xl md:text-4xl font-bold text-accent transition-transform group-hover:scale-110">100+</p>
+            <p className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-tighter">Bridal Dresses</p>
           </div>
         </div>
       </div>

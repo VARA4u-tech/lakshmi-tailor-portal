@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.jpg";
 
 const navLinks = [
-  { name: "Home", nameTE: "హోమ్", href: "/" },
+  { name: "Home", nameTE: "హోమ్", href: "/home" },
   { name: "About", nameTE: "గురించి", href: "/about" },
   { name: "Services", nameTE: "సేవలు", href: "/services" },
   { name: "Products", nameTE: "ఉత్పత్తులు", href: "/products" },
@@ -53,7 +53,7 @@ export function Header({ language, onLanguageChange }: HeaderProps) {
       <div className="container mx-auto px-4">
         <div className="relative flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/home" className="flex items-center gap-3">
             <img
               src={logo}
               alt="Lakshmi Fashion & Designers"
