@@ -6,9 +6,9 @@ const router = express.Router();
 
 // GET /api/gallery/recommendations/:id - Proxy to Python ML Service
 router.get("/recommendations/:id", async (req, res) => {
+  const { id } = req.params;
+  const mlServiceUrl = process.env.ML_SERVICE_URL || "http://localhost:8000";
   try {
-    const { id } = req.params;
-    const mlServiceUrl = process.env.ML_SERVICE_URL || "http://localhost:8000";
 
     const response = await fetch(
       `${mlServiceUrl}/gallery/recommendations/${id}`,
@@ -18,17 +18,17 @@ router.get("/recommendations/:id", async (req, res) => {
     if (!response.ok) throw new Error(data.detail || "ML Service Error");
     res.json(data);
   } catch (err) {
-    console.error("ML Proxy Error:", err.message);
+    console.error(`ML Proxy Error calling ${mlServiceUrl}/gallery/recommendations/${id}:`, err);
     res
       .status(500)
-      .json({ error: "Recommendation engine is currently offline." });
+      .json({ error: "Recommendation engine error", message: err.message });
   }
 });
 
 // GET /api/gallery/clusters - Proxy to Python ML Service
 router.get("/clusters", async (req, res) => {
+  const mlServiceUrl = process.env.ML_SERVICE_URL || "http://localhost:8000";
   try {
-    const mlServiceUrl = process.env.ML_SERVICE_URL || "http://localhost:8000";
 
     const response = await fetch(`${mlServiceUrl}/gallery/clusters`);
     const data = await response.json();
@@ -36,8 +36,8 @@ router.get("/clusters", async (req, res) => {
     if (!response.ok) throw new Error(data.detail || "ML Service Error");
     res.json(data);
   } catch (err) {
-    console.error("ML Proxy Error:", err.message);
-    res.status(500).json({ error: "Grouping engine is currently offline." });
+    console.error(`ML Proxy Error calling ${mlServiceUrl}/gallery/clusters:`, err);
+    res.status(500).json({ error: "Grouping engine error", message: err.message });
   }
 });
 
