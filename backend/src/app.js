@@ -14,9 +14,31 @@ dotenv.config();
 const app = express();
 
 // ─── Middleware ───────────────────────────────────────────────
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:8080",
+  "http://localhost:5173",
+  "https://lakshmi-fashion-designers-e-commerc.vercel.app"
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      const isAllowed = allowedOrigins.some(allowed => {
+        if (!allowed) return false;
+        // Check if origin matches exactly or if it's the domain without protocol
+        return origin === allowed || origin === `https://${allowed}` || origin === `http://${allowed}`;
+      });
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   }),
 );
